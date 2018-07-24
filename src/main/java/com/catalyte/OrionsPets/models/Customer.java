@@ -13,7 +13,14 @@ public class Customer {
   private String phone;
   private String address;
 
+  public Customer(){}
 
+  public Customer(String firstname, String lastname, String phone, String address) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.phone = phone;
+    this.address = address;
+  }
 
   public String getId() {
     return id;

@@ -15,7 +15,7 @@ public class Pet {
   private boolean sold;
 
   public Pet() {
-
+    sold = false;
   }
 
   public Pet(String petTypeId, String name, int age, String color) {
@@ -23,6 +23,7 @@ public class Pet {
     this.name = name;
     this.age = age;
     this.color = color;
+    sold = false;
   }
 
   public String getId() {
@@ -63,6 +64,14 @@ public class Pet {
 
   public void setAge(int age) {
     this.age = age;
+  }
+
+  public boolean isSold() {
+    return sold;
+  }
+
+  public void setSold(boolean sold) {
+    this.sold = sold;
   }
 
 }

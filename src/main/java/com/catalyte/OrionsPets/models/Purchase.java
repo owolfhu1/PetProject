@@ -10,7 +10,7 @@ public class Purchase {
   @Id
   private String id;
   private String customerId;
-  private Date date;
+  private Date date = new Date();
   private PurchaseItem[] items;
   private double totalPrice;
 

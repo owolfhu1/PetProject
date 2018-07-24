@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2d4418-6b1b-442e-96b3-dd5ca7c8ce29" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,8 +19,8 @@
       <file leaf-file-name="SetUpController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/SetUpController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="528">
+              <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -31,8 +31,8 @@
       <file leaf-file-name="Pet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+            <state relative-caret-position="268">
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,13 +43,24 @@
       <file leaf-file-name="SetUpServices.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="52" column="47" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
+            <state relative-caret-position="513">
+              <caret line="129" column="45" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#clearDatabase#0;class#SetUpService#0" />
-                <element signature="method#createDummyData#0;class#SetUpServices#0" />
                 <element signature="method#createDummyInventory#0;class#SetUpServices#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Customer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Customer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="447">
+              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,9 +94,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/InventoryItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Purchases.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/PurchaseItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/StartUpService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Customer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/repositories/CustomerRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/repositories/InventoryRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/repositories/PetRepository.java" />
@@ -96,6 +105,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/repositories/PetTypeRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/SetUpController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/PurchaseItem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Customer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java" />
       </list>
     </option>
@@ -301,12 +312,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1532447382718</updated>
-      <workItem from="1532447385759" duration="9157000" />
+      <workItem from="1532447385759" duration="10123000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9157000" />
+    <option name="totallyTimeSpent" value="10123000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-210" width="1936" height="1056" extended-state="6" />
@@ -329,7 +340,7 @@
       <window_info id="Image Layers" />
       <window_info anchor="bottom" id="Java Enterprise" />
       <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29738563" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29738563" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Terminal" weight="0.32897604" />
@@ -387,13 +398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/PurchaseItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Purchase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -427,16 +431,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="547">
           <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="45" column="3" lean-forward="true" selection-start-line="45" selection-start-column="3" selection-end-line="45" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -500,20 +494,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/SetUpController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="268">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/PurchaseItem.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="16" column="4" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+        <state relative-caret-position="396">
+          <caret line="24" column="33" lean-forward="true" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/SetUpController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="24" column="32" lean-forward="true" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="447">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -522,12 +533,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="52" column="47" selection-start-line="52" selection-start-column="47" selection-end-line="52" selection-end-column="47" />
+        <state relative-caret-position="513">
+          <caret line="129" column="45" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#clearDatabase#0;class#SetUpService#0" />
-            <element signature="method#createDummyData#0;class#SetUpServices#0" />
             <element signature="method#createDummyInventory#0;class#SetUpServices#0" />
           </folding>
         </state>

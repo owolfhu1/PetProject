@@ -5,11 +5,16 @@ import com.catalyte.OrionsPets.models.Customer;
 import com.catalyte.OrionsPets.models.InventoryItem;
 import com.catalyte.OrionsPets.models.Pet;
 import com.catalyte.OrionsPets.models.PetType;
+import com.catalyte.OrionsPets.models.Purchase;
+import com.catalyte.OrionsPets.models.PurchaseItem;
 import com.catalyte.OrionsPets.repositories.CustomerRepository;
 import com.catalyte.OrionsPets.repositories.InventoryRepository;
 import com.catalyte.OrionsPets.repositories.PetRepository;
 import com.catalyte.OrionsPets.repositories.PetTypeRepository;
 import com.catalyte.OrionsPets.repositories.PurchaseRepository;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +52,8 @@ public class SetUpServices {
     createDummyPetTypes();
     createDummyPets();
     createDummyInventory();
+    createDummyCustomers();
+    createDummyPurchases();
   }
 
   private void createDummyPetTypes() {
@@ -120,8 +127,40 @@ public class SetUpServices {
   }
 
   private void createDummyCustomers() {
+    customerRepository.save(new Customer("Orion", "Wolf", "(111) 111-1111", "13653 Boyd St"));
+    customerRepository.save(new Customer("Jake", "Smith", "(123) 131-1234", "9837 Main St"));
+    customerRepository.save(new Customer("David", "Trinkoff", "(666) 666-6666", "666 Twenty Rd"));
+    customerRepository.save(new Customer("Don", "Baker", "(201) 321-9364", "777 Seven Dr"));
+    customerRepository.save(new Customer("Mary", "Brett", "(301) 234-7654", "9087 Steet St"));
+    customerRepository.save(new Customer("Mitch", "Mitchy", "(876) 354-8547", "987 Hope Dr"));
+    customerRepository.save(new Customer("Rigel", "Wolfe", "(301) 746-2985", "3245 Collage Dr"));
+    customerRepository.save(new Customer("Beth", "Cratty", "(746) 133-2211", "853 Hell St"));
+    customerRepository.save(new Customer("Dan", "Cray", "(902) 456-8765", "758 Trella Blvd"));
+  }
 
-    Customer cust1 = new Customer();
+  private void createDummyPurchases() {
+    String dogInvId = inventoryRepository.findOneByPetTypeId(petTypeRepository.findByType("dog").getId()).getId();
+    String catInvId = inventoryRepository.findOneByPetTypeId(petTypeRepository.findByType("cat").getId()).getId();
+    String birdInvId = inventoryRepository.findOneByPetTypeId(petTypeRepository.findByType("bird").getId()).getId();
+    String reptileInvId = inventoryRepository.findOneByPetTypeId(petTypeRepository.findByType("reptile").getId()).getId();
+    String rodentInvId = inventoryRepository.findOneByPetTypeId(petTypeRepository.findByType("rodent").getId()).getId();
+
+    ArrayList<String> ids = new ArrayList<>();
+    customerRepository.findAll().forEach(customer -> ids.add(customer.getId()));
+
+    Purchase purchase1 = new Purchase();
+    purchase1.setCustomerId(ids.get(0));
+    Pet andy = petRepository.findOneByName("Andy");
+    Pet charlie = petRepository.findOneByName("Charlie");
+    andy.setSold(true);
+    charlie.setSold(true);
+    petRepository.save(andy);
+    petRepository.save(charlie);
+    PurchaseItem andyItem = new PurchaseItem(andy.getId(), dogInvId);
+    PurchaseItem charlieItem = new PurchaseItem(charlie.getId(), dogInvId);
+
+
+
 
   }
 

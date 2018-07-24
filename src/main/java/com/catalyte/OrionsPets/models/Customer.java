@@ -7,11 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Customer {
 
   @Id
-  String id;
-  String firstname;
-  String lastname;
-  String phone;
-  String address;
+  private String id;
+  private String firstname;
+  private String lastname;
+  private String phone;
+  private String address;
 
   public String getId() {
     return id;

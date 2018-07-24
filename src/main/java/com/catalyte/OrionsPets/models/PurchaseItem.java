@@ -4,7 +4,11 @@ public class PurchaseItem {
 
   private String petId;
   private String invenoryItemId;
-  private double price;
+
+  public PurchaseItem(String petId, String invenoryItemId) {
+    this.petId = petId;
+    this.invenoryItemId = invenoryItemId;
+  }
 
   public String getPetId() {
     return petId;
@@ -20,14 +24,6 @@ public class PurchaseItem {
 
   public void setInvenoryItemId(String invenoryItemId) {
     this.invenoryItemId = invenoryItemId;
-  }
-
-  public double getPrice() {
-    return price;
-  }
-
-  public void setPrice(double price) {
-    this.price = price;
   }
 
 }

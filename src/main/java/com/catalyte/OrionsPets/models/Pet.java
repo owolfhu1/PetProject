@@ -8,10 +8,22 @@ public class Pet {
 
   @Id
   private String id;
+  private String petTypeId;
   private String name;
   private String color;
-  private String petTypeId;
   private int age;
+  private boolean sold;
+
+  public Pet() {
+
+  }
+
+  public Pet(String petTypeId, String name, int age, String color) {
+    this.petTypeId = petTypeId;
+    this.name = name;
+    this.age = age;
+    this.color = color;
+  }
 
   public String getId() {
     return id;

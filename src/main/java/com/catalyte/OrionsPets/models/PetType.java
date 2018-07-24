@@ -7,8 +7,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class PetType {
 
   @Id
-  String id;
-  String name;
+  private String id;
+  private String type;
+
+  public PetType() {
+
+  }
+  public PetType(String type) {
+    this.type = type;
+  }
 
   public String getId() {
     return id;
@@ -18,12 +25,12 @@ public class PetType {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public String getType() {
+    return type;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setType(String type) {
+    this.type = type;
   }
 
 }

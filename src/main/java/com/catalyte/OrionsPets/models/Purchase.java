@@ -11,8 +11,19 @@ public class Purchase {
   private String id;
   private String customerId;
   private Date date = new Date();
-  private PurchaseItem[] items;
-  private double totalPrice;
+  private PurchaseItem[] items = new PurchaseItem[0];
+  private double totalPrice = 0;
+
+  public void addItem(PurchaseItem item){
+    PurchaseItem[] newItems = new PurchaseItem[items.length + 1];
+    System.arraycopy(items, 0, newItems, 0, items.length);
+    newItems[items.length] = item;
+    items = newItems;
+    double total = 0;
+    for (PurchaseItem i : items)
+      total += i.getPrice();
+    totalPrice = total;
+  }
 
   public String getId() {
     return id;
@@ -53,4 +64,5 @@ public class Purchase {
   public void setTotalPrice(double totalPrice) {
     this.totalPrice = totalPrice;
   }
+
 }

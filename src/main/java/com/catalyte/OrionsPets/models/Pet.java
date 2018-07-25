@@ -12,18 +12,27 @@ public class Pet {
   private String name;
   private String color;
   private int age;
-  private boolean sold;
+  private String sex;
+  private boolean sold = false;
 
   public Pet() {
     sold = false;
   }
 
-  public Pet(String petTypeId, String name, int age, String color) {
+  public Pet(String petTypeId, String name, int age, String color, String sex) {
     this.petTypeId = petTypeId;
     this.name = name;
     this.age = age;
     this.color = color;
-    sold = false;
+    this.sex = sex;
+  }
+
+  public String getSex() {
+    return sex;
+  }
+
+  public void setSex(String sex) {
+    this.sex = sex;
   }
 
   public String getId() {

@@ -16,13 +16,13 @@ public class SetUpController {
   @RequestMapping(value = "clear", method = RequestMethod.GET)
   public String clearDatabase() {
     setUpServices.clearDatabase();
-    return "database cleared!";
+    return "Database cleared!";
   }
 
   @RequestMapping(value = "create", method = RequestMethod.GET)
   public String createDummyPetTypes() {
-    setUpServices.createDummyData();
-    return "dummy data created";
+    return setUpServices.createDummyData() ? "Dummy data created" :
+            "There is already data in the database, please clear it before proceeding.";
   }
 
 }

@@ -17,11 +17,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SetUpServices {
-  private static final int MAX_PETS_PER_PURCHASE = 4;
+  private static final int MAX_PETS_PER_PURCHASE = 6;
   private static final int MAX_PET_AGE = 20;
-  private static final int NUMB_OF_PETS = 250;
-  private static final int NUMB_OF_CUSTOMERS = 50;
-  private static final int NUMB_OF_PURCHASES = 50;
+  private static final int NUMB_OF_PETS = 400;
+  private static final int NUMB_OF_CUSTOMERS = 100;
+  private static final int NUMB_OF_PURCHASES = 100;
   private static String[] colors = {"red", "yellow", "blue", "green", "brown",
           "white", "black", "gray", "striped", "orange", "purple", "pink"};
   private static String[] begin = {"Kr", "Ca", "Ra", "Mrok", "Cru",
@@ -62,6 +62,7 @@ public class SetUpServices {
     petRepository.deleteAll();
     petTypeRepository.deleteAll();
     purchaseRepository.deleteAll();
+    userRepository.deleteAll();
   }
 
   public boolean createDummyData() {

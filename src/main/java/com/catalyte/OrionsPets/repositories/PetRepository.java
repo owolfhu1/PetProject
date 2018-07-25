@@ -4,6 +4,5 @@ import com.catalyte.OrionsPets.models.Pet;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PetRepository extends MongoRepository<Pet, String> {
-
-  Pet findOneByName(String name);
+  Pet findOneById(String id);
 }

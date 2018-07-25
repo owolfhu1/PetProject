@@ -12,10 +12,6 @@ public class Inventory {
   private String petTypeId;
   private double price;
 
-  public void addInventory(int number) {
-    count += number;
-  }
-
   public String getId() {
     return id;
   }

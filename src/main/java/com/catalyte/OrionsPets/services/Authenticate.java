@@ -1,5 +1,6 @@
 package com.catalyte.OrionsPets.services;
 
+import com.catalyte.OrionsPets.DTOs.UserDTO;
 import com.catalyte.OrionsPets.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class Authenticate {
   public boolean authenticate(String username, String password, String role) {
     return userRepository.existsByUsername(username) &&
         userRepository.findOneByUsername(username).getPassword().equals(password) &&
-        userRepository.findOneByUsername(username).hasRole(role) ;
+        new UserDTO(userRepository.findOneByUsername(username)).hasRole(role) ;
   }
 
 }

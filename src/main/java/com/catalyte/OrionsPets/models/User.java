@@ -17,20 +17,6 @@ public class User {
     roles = new String[0];
   }
 
-  public void addRole(String role) {
-    String[] newRoles = new String[roles.length + 1];
-    System.arraycopy(roles, 0, newRoles, 0, roles.length);
-    newRoles[roles.length] = role;
-    roles = newRoles;
-  }
-
-  public boolean hasRole(String role) {
-    for(String string : roles)
-      if (string.equals(role))
-        return true;
-    return false;
-  }
-
   public String getId() {
     return id;
   }

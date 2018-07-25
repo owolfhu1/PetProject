@@ -13,6 +13,7 @@ public class PetType {
   public PetType() {
 
   }
+
   public PetType(String type) {
     this.type = type;
   }

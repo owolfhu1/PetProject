@@ -1,6 +1,9 @@
 package com.catalyte.OrionsPets.services;
 
 
+import com.catalyte.OrionsPets.DTOs.InventoryDTO;
+import com.catalyte.OrionsPets.DTOs.PurchaseDTO;
+import com.catalyte.OrionsPets.DTOs.UserDTO;
 import com.catalyte.OrionsPets.models.*;
 import com.catalyte.OrionsPets.repositories.CustomerRepository;
 import com.catalyte.OrionsPets.repositories.InventoryRepository;
@@ -17,11 +20,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SetUpServices {
-  private static final int MAX_PETS_PER_PURCHASE = 6;
+  private static final int MAX_PETS_PER_PURCHASE = 3;
   private static final int MAX_PET_AGE = 20;
-  private static final int NUMB_OF_PETS = 400;
-  private static final int NUMB_OF_CUSTOMERS = 100;
-  private static final int NUMB_OF_PURCHASES = 100;
+  private static final int NUMB_OF_PETS = 50;
+  private static final int NUMB_OF_CUSTOMERS = 20;
+  private static final int NUMB_OF_PURCHASES = 20;
   private static String[] colors = {"red", "yellow", "blue", "green", "brown",
           "white", "black", "gray", "striped", "orange", "purple", "pink"};
   private static String[] begin = {"Kr", "Ca", "Ra", "Mrok", "Cru",
@@ -82,9 +85,11 @@ public class SetUpServices {
   private void createUsers() {
     User user = new User("user", "password");
     User admin = new User("admin", "password");
-    user.addRole("USER");
-    admin.addRole("USER");
-    admin.addRole("ADMIN");
+    UserDTO userDTO = new UserDTO(user);
+    UserDTO adminDTO = new UserDTO(admin);
+    userDTO.addRole("USER");
+    adminDTO.addRole("USER");
+    adminDTO.addRole("ADMIN");
     userRepository.save(user);
     userRepository.save(admin);
   }
@@ -92,7 +97,7 @@ public class SetUpServices {
   private void createDummyPetTypesAndInventories() {
     for (String type : petTypes) {
       petTypeRepository.save(new PetType(type));
-      String petTypeId = petTypeRepository.findOneByType(type).getId();
+      String petTypeId = petTypeRepository.findByType(type).getId();
       Inventory inventory = new Inventory();
       inventory.setPetTypeId(petTypeId);
       inventory.setPrice((rand.nextInt(400)+1)*.25);
@@ -106,7 +111,8 @@ public class SetUpServices {
       petTypeIds[i] = petTypeRepository.findByType(petTypes[i]).getId();
     for (int i = 0; i < NUMB_OF_PETS; i++) {
       Inventory inventory = inventoryRepository.findOneByPetTypeId(petTypeIds[rand.nextInt(petTypeIds.length)]);
-      inventory.addInventory(1);
+      InventoryDTO invDTO = new InventoryDTO(inventory);
+      invDTO.addInventory(1);
       inventoryRepository.save(inventory);
       Pet pet = new Pet(inventory.getPetTypeId(), randomName(),rand.nextInt(MAX_PET_AGE)+1, randomColor(), rand.nextBoolean() ? "male":"female");
       petRepository.save(pet);
@@ -133,8 +139,10 @@ public class SetUpServices {
           Pet pet = petRepository.findOneById(petId);
           pet.setSold(true);
           Inventory inventory = inventoryRepository.findOneByPetTypeId(pet.getPetTypeId());
-          inventory.addInventory(-1);
-          purchase.addItem(new PurchaseItem(petId, inventory.getPrice()));
+          InventoryDTO invDTO = new InventoryDTO(inventory);
+          invDTO.addInventory(-1);
+          PurchaseDTO purchaseDTO = new PurchaseDTO(purchase);
+          purchaseDTO.addItem(new PurchaseItem(petId, inventory.getPrice()));
           petRepository.save(pet);
           inventoryRepository.save(inventory);
         }

@@ -8,6 +8,7 @@ import com.catalyte.OrionsPets.repositories.PetRepository;
 import com.catalyte.OrionsPets.repositories.PetTypeRepository;
 import com.catalyte.OrionsPets.repositories.PurchaseRepository;
 
+import com.catalyte.OrionsPets.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -41,16 +42,18 @@ public class SetUpServices {
   private PetRepository petRepository;
   private PetTypeRepository petTypeRepository;
   private PurchaseRepository purchaseRepository;
+  private UserRepository userRepository;
 
   @Autowired
   public SetUpServices(CustomerRepository customerRepository, InventoryRepository inventoryRepository,
                        PetRepository petRepository, PetTypeRepository petTypeRepository,
-                       PurchaseRepository purchaseRepository) {
+                       PurchaseRepository purchaseRepository, UserRepository userRepository) {
     this.customerRepository = customerRepository;
     this.inventoryRepository = inventoryRepository;
     this.petRepository = petRepository;
     this.petTypeRepository = petTypeRepository;
     this.purchaseRepository = purchaseRepository;
+    this.userRepository = userRepository;
   }
 
   public void clearDatabase() {
@@ -64,7 +67,8 @@ public class SetUpServices {
   public boolean createDummyData() {
     if (petTypeRepository.findAll().size() == 0 && inventoryRepository.findAll().size() == 0 &&
             petRepository.findAll().size() == 0 && customerRepository.findAll().size() == 0 &&
-            purchaseRepository.findAll().size() == 0) {
+            purchaseRepository.findAll().size() == 0 && userRepository.findAll().size() == 0) {
+      createUsers();
       createDummyPetTypesAndInventories();
       createDummyPets();
       createDummyCustomers();
@@ -72,6 +76,16 @@ public class SetUpServices {
       return true;
     }
     return false;
+  }
+
+  private void createUsers() {
+    User user = new User("user", "password");
+    User admin = new User("admin", "password");
+    user.addRole("USER");
+    admin.addRole("USER");
+    admin.addRole("ADMIN");
+    userRepository.save(user);
+    userRepository.save(admin);
   }
 
   private void createDummyPetTypesAndInventories() {
@@ -104,13 +118,13 @@ public class SetUpServices {
   }
 
   private void createDummyPurchases() {
-    ArrayList<String> custIds = new ArrayList<>();
-    customerRepository.findAll().forEach(customer -> custIds.add(customer.getId()));
+    ArrayList<String> customerIds = new ArrayList<>();
+    customerRepository.findAll().forEach(customer -> customerIds.add(customer.getId()));
     ArrayList<String> petIds = new ArrayList<>();
     petRepository.findAll().forEach(pet -> petIds.add(pet.getId()));
     for (int i = 0; i < NUMB_OF_PURCHASES; i++){
       Purchase purchase = new Purchase();
-      purchase.setCustomerId(custIds.get(rand.nextInt(custIds.size())));
+      purchase.setCustomerId(customerIds.get(rand.nextInt(customerIds.size())));
       int numbOfPets = rand.nextInt(MAX_PETS_PER_PURCHASE)+1;
       for (int x = 0; x < numbOfPets; x++){
         if (petIds.size() > 5) {//don't sell everything!!

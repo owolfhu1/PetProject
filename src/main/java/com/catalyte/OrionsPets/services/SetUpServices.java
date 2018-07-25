@@ -110,7 +110,7 @@ public class SetUpServices {
     for (int i = 0; i < petTypes.length; i++)
       petTypeIds[i] = petTypeRepository.findByType(petTypes[i]).getId();
     for (int i = 0; i < NUMB_OF_PETS; i++) {
-      Inventory inventory = inventoryRepository.findOneByPetTypeId(petTypeIds[rand.nextInt(petTypeIds.length)]);
+      Inventory inventory = inventoryRepository.findByPetTypeId(petTypeIds[rand.nextInt(petTypeIds.length)]);
       InventoryDTO invDTO = new InventoryDTO(inventory);
       invDTO.addInventory(1);
       inventoryRepository.save(inventory);
@@ -138,7 +138,7 @@ public class SetUpServices {
           String petId = petIds.remove(rand.nextInt(petIds.size()));
           Pet pet = petRepository.findOneById(petId);
           pet.setSold(true);
-          Inventory inventory = inventoryRepository.findOneByPetTypeId(pet.getPetTypeId());
+          Inventory inventory = inventoryRepository.findByPetTypeId(pet.getPetTypeId());
           InventoryDTO invDTO = new InventoryDTO(inventory);
           invDTO.addInventory(-1);
           PurchaseDTO purchaseDTO = new PurchaseDTO(purchase);

@@ -27,7 +27,7 @@ public class InventoryService {
   public Inventory searchInventoriesByPetType(String petType) throws Exception {
     if (petTypeRepository.existsByType(petType)) {
       String petTypeId = petTypeRepository.findByType(petType).getId();
-      return inventoryRepository.findOneByPetTypeId(petTypeId);
+      return inventoryRepository.findByPetTypeId(petTypeId);
     } else throw new Exception("error: pet type not found");
   }
 
@@ -39,6 +39,17 @@ public class InventoryService {
       inventory.setPetTypeId(petTypeId);
       inventory.setPrice(price);
       inventoryRepository.save(inventory);
+      return true;
+    }
+    return false;
+  }
+
+  public boolean deleteInventory(String petType) {
+    if (petTypeRepository.existsByType(petType)) {
+      String petTypeId = petTypeRepository.findByType(petType).getId();
+      petRepository.deleteByPetTypeId(petTypeId);
+      inventoryRepository.deleteByPetTypeId(petTypeId);
+      petTypeRepository.deleteById(petTypeId);
       return true;
     }
     return false;

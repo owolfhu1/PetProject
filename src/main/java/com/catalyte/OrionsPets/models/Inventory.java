@@ -3,14 +3,18 @@ package com.catalyte.OrionsPets.models;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "inventory")
-public class InventoryItem {
+@Document(collection = "inventories")
+public class Inventory {
 
   @Id
   private String id;
-  private int count;
+  private int count = 0;
   private String petTypeId;
   private double price;
+
+  public void addInventory(int number) {
+    count += number;
+  }
 
   public String getId() {
     return id;

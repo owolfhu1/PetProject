@@ -1,8 +1,8 @@
 package com.catalyte.OrionsPets.repositories;
 
-import com.catalyte.OrionsPets.models.InventoryItem;
+import com.catalyte.OrionsPets.models.Inventory;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface InventoryRepository extends MongoRepository<InventoryItem, String> {
-  InventoryItem findOneByPetTypeId(String petTypeId);
+public interface InventoryRepository extends MongoRepository<Inventory, String> {
+  Inventory findOneByPetTypeId(String petTypeId);
 }

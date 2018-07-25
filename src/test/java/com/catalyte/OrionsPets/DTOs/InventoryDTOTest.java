@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import com.catalyte.OrionsPets.models.Inventory;
-import org.junit.Before;
 import org.junit.Test;
 
 public class InventoryDTOTest {
@@ -23,6 +22,5 @@ public class InventoryDTOTest {
     classToTest.addInventory(100);
     assertFalse(inventory.getCount() == 0);
   }
-
 
 }

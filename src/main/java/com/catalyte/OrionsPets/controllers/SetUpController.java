@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "setup")
 public class SetUpController {
 
+  private SetUpService setUpService;
+
   @Autowired
-  SetUpService setUpService;
+  public SetUpController(SetUpService setUpService) {
+    this.setUpService = setUpService;
+  }
 
   @RequestMapping(value = "clear", method = RequestMethod.GET)
   public String clearDatabase() {

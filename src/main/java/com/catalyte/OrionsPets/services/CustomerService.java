@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService {
 
-  CustomerRepository customerRepository;
-  Authenticate authenticate;
+  private CustomerRepository customerRepository;
+  private Authenticate authenticate;
 
   @Autowired
   public CustomerService(CustomerRepository customerRepository,

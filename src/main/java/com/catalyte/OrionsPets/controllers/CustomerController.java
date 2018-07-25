@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "customers")
 public class CustomerController {
 
-  CustomerService customerService;
-  Authenticate authenticate;
+  private CustomerService customerService;
+  private Authenticate authenticate;
 
   @Autowired
   public CustomerController(CustomerService customerService,

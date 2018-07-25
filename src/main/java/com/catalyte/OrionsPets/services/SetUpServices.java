@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SetUpServices {
-  private static final int NUMB_OF_PETS = 250;
+  private static final int MAX_PETS_PER_PURCHASE = 4;
   private static final int MAX_PET_AGE = 20;
+  private static final int NUMB_OF_PETS = 250;
   private static final int NUMB_OF_CUSTOMERS = 50;
   private static final int NUMB_OF_PURCHASES = 50;
-  private static final int MAX_PETS_PER_PURCHASE = 4;
   private static String[] colors = {"red", "yellow", "blue", "green", "brown",
           "white", "black", "gray", "striped", "orange", "purple", "pink"};
   private static String[] begin = {"Kr", "Ca", "Ra", "Mrok", "Cru",
@@ -113,7 +113,7 @@ public class SetUpServices {
       purchase.setCustomerId(custIds.get(rand.nextInt(custIds.size())));
       int numbOfPets = rand.nextInt(MAX_PETS_PER_PURCHASE)+1;
       for (int x = 0; x < numbOfPets; x++){
-        if (petIds.size() > 10) {//don't sell everything!!
+        if (petIds.size() > 5) {//don't sell everything!!
           String petId = petIds.remove(rand.nextInt(petIds.size()));
           Pet pet = petRepository.findOneById(petId);
           pet.setSold(true);

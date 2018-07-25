@@ -19,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SetUpServices {
+public class SetUpService {
   private static final int MAX_PETS_PER_PURCHASE = 3;
   private static final int MAX_PET_AGE = 20;
   private static final int NUMB_OF_PETS = 50;
@@ -48,7 +48,7 @@ public class SetUpServices {
   private UserRepository userRepository;
 
   @Autowired
-  public SetUpServices(CustomerRepository customerRepository, InventoryRepository inventoryRepository,
+  public SetUpService(CustomerRepository customerRepository, InventoryRepository inventoryRepository,
                        PetRepository petRepository, PetTypeRepository petTypeRepository,
                        PurchaseRepository purchaseRepository, UserRepository userRepository) {
     this.customerRepository = customerRepository;

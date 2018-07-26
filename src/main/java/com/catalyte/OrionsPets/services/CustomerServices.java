@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerService {
+public class CustomerServices {
 
   private CustomerRepository customerRepository;
-  private AuthenticationService authenticationService;
+  private AuthenticationServices authenticationServices;
 
   @Autowired
-  public CustomerService(CustomerRepository customerRepository,
-                         AuthenticationService authenticationService) {
+  public CustomerServices(CustomerRepository customerRepository,
+                         AuthenticationServices authenticationServices) {
     this.customerRepository = customerRepository;
-    this.authenticationService = authenticationService;
+    this.authenticationServices = authenticationServices;
   }
 
   public List<Customer> searchCustomers(String type, String value) {

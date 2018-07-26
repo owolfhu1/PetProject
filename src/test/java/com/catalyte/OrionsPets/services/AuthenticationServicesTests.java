@@ -11,9 +11,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
-public class AuthenticationServiceTests {
+public class AuthenticationServicesTests {
 
-  private AuthenticationService classToTest;
+  private AuthenticationServices classToTest;
 
   @Mock
   private
@@ -22,7 +22,7 @@ public class AuthenticationServiceTests {
   @Before
   public void before() {
     initMocks(this);
-    classToTest = new AuthenticationService(userRepoMock);
+    classToTest = new AuthenticationServices(userRepoMock);
   }
 
   @Test

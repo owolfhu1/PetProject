@@ -1,8 +1,8 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Customer;
-import com.catalyte.OrionsPets.services.AuthenticationService;
-import com.catalyte.OrionsPets.services.CustomerService;
+import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.CustomerServices;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,26 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "customers")
 public class CustomerController {
 
-  private CustomerService customerService;
-  private AuthenticationService authenticationService;
+  private CustomerServices customerServices;
+  private AuthenticationServices authenticationServices;
 
   @Autowired
-  public CustomerController(CustomerService customerService,
-                            AuthenticationService authenticationService) {
-    this.customerService = customerService;
-    this.authenticationService = authenticationService;
+  public CustomerController(CustomerServices customerServices,
+                            AuthenticationServices authenticationServices) {
+    this.customerServices = customerServices;
+    this.authenticationServices = authenticationServices;
   }
 
   @RequestMapping(value = "/search/{type}/{value}", method = RequestMethod.GET)
   public List<Customer> searchCustomers(@PathVariable String type, @PathVariable String value) {
-    return customerService.searchCustomers(type,value);
+    return customerServices.searchCustomers(type,value);
   }
 
   @RequestMapping(value = "/create", method = RequestMethod.POST)
   public String createCustomer(@RequestHeader String username, @RequestHeader String password,
       @RequestBody Customer customer) {
-    if (authenticationService.authenticate(username,password,"ADMIN")){
-      return customerService.createCustomer(customer) ? "Customer added." : "Invalid customer provided.";
+    if (authenticationServices.authenticate(username,password,"ADMIN")){
+      return customerServices.createCustomer(customer) ? "Customer added." : "Invalid customer provided.";
     }
     return "Access denied";
   }
@@ -43,8 +43,8 @@ public class CustomerController {
   @RequestMapping(value = "/update/{customerId}", method = RequestMethod.PUT)
   public String createCustomer(@RequestHeader String username, @RequestHeader String password,
       @RequestBody Customer customer, @PathVariable("customerId") String customerId) {
-    if (authenticationService.authenticate(username,password,"ADMIN")){
-      return customerService.updateCustomer(customer,customerId) ? "Customer updated." : "Invalid data provided";
+    if (authenticationServices.authenticate(username,password,"ADMIN")){
+      return customerServices.updateCustomer(customer,customerId) ? "Customer updated." : "Invalid data provided";
     }
     return "Access denied";
   }
@@ -52,8 +52,8 @@ public class CustomerController {
   @RequestMapping(value = "/delete/{customerId}", method = RequestMethod.DELETE)
   public String createCustomer(@RequestHeader String username, @RequestHeader String password,
       @PathVariable("customerId") String customerId) {
-    if (authenticationService.authenticate(username,password,"ADMIN")){
-      return customerService.deleteCustomer(customerId) ? "Customer deleted." : "Invalid data provided";
+    if (authenticationServices.authenticate(username,password,"ADMIN")){
+      return customerServices.deleteCustomer(customerId) ? "Customer deleted." : "Invalid data provided";
     }
     return "Access denied";
   }

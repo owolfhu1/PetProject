@@ -19,9 +19,9 @@ import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class PetServiceTests {
+public class PetServicesTests {
 
-  private PetService classToTest;
+  private PetServices classToTest;
 
   @Mock
   private PetTypeRepository typeRepoMock;
@@ -33,7 +33,7 @@ public class PetServiceTests {
   @Before
   public void before() {
     initMocks(this);
-    classToTest = new PetService(typeRepoMock, invRepoMock, petRepoMock);
+    classToTest = new PetServices(typeRepoMock, invRepoMock, petRepoMock);
   }
 
   @Test

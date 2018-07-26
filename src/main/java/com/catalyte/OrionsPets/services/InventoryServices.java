@@ -5,18 +5,19 @@ import com.catalyte.OrionsPets.models.PetType;
 import com.catalyte.OrionsPets.repositories.InventoryRepository;
 import com.catalyte.OrionsPets.repositories.PetRepository;
 import com.catalyte.OrionsPets.repositories.PetTypeRepository;
+import com.catalyte.OrionsPets.resorces.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InventoryService {
+public class InventoryServices {
 
-  InventoryRepository inventoryRepository;
-  PetTypeRepository petTypeRepository;
-  PetRepository petRepository;
+  private InventoryRepository inventoryRepository;
+  private PetTypeRepository petTypeRepository;
+  private PetRepository petRepository;
 
   @Autowired
-  public InventoryService(
+  public InventoryServices(
       InventoryRepository inventoryRepository,
       PetTypeRepository petTypeRepository,PetRepository petRepository) {
     this.inventoryRepository = inventoryRepository;
@@ -24,17 +25,16 @@ public class InventoryService {
     this.petRepository = petRepository;
   }
 
-  public Inventory searchInventoriesByPetType(String petType) throws Exception {
+  public Inventory searchInventoriesByPetType(String petType) throws DataNotFoundException {
     if (petTypeRepository.existsByType(petType)) {
       String petTypeId = petTypeRepository.findByType(petType).getId();
       return inventoryRepository.findByPetTypeId(petTypeId);
-    } else throw new Exception("error: pet type not found");
+    } else throw new DataNotFoundException();
   }
 
-  public boolean createInventory(String petType, double price) {
-    if (!petTypeRepository.existsByType(petType)) {
-      PetType newPetType = new PetType(petType);
-      String petTypeId = petTypeRepository.save(newPetType).getId();
+  public boolean createInventory(PetType petType, double price) {
+    if (!petTypeRepository.existsByType(petType.getType())) {
+      String petTypeId = petTypeRepository.save(petType).getId();
       Inventory inventory = new Inventory();
       inventory.setPetTypeId(petTypeId);
       inventory.setPrice(price);

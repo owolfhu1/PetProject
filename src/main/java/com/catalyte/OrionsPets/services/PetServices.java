@@ -15,14 +15,14 @@ import java.util.List;
 
 
 @Service
-public class PetService {
+public class PetServices {
 
   private PetTypeRepository petTypeRepository;
   private InventoryRepository inventoryRepository;
   private PetRepository petRepository;
 
   @Autowired
-  public PetService(PetTypeRepository petTypeRepository,
+  public PetServices(PetTypeRepository petTypeRepository,
       InventoryRepository inventoryRepository,
       PetRepository petRepository) {
     this.petTypeRepository = petTypeRepository;
@@ -113,28 +113,20 @@ public class PetService {
 
 
   private String validatePet(Pet pet) {
-
     if (!petTypeRepository.existsByType(pet.getPetTypeId()))
       return "Bad pet type";
-
     if (pet.getName().isEmpty() || pet.getName().split(" ").length == 0)
       return "Pet name required";
-
     if (pet.getName().length() > 15)
       return "Pet name too long, max 15 char.";
-
     if (pet.getAge() < 0)
       return "Pet must have a positive age!!";
-
     if (pet.getColor().isEmpty() || pet.getColor().split(" ").length == 0)
       return "Pet color required";
-
     if (pet.getColor().length() > 15)
       return "Pet color too long, max 15 char.";
-
     if (!pet.getSex().equals("male") && !pet.getSex().equals("female"))
       return "Pet sex must be male or female";
-
     return "";
   }
 

@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService {
+public class AuthenticationServices {
 
   private UserRepository userRepository;
 
   @Autowired
-  public AuthenticationService(UserRepository userRepository) {
+  public AuthenticationServices(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
 

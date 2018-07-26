@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2d4418-6b1b-442e-96b3-dd5ca7c8ce29" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/AuthenticationServiceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/PetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/PetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/services/PetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/services/PetService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/services/PetServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/services/PetServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/AuthenticationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/CustomerServiceTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTests.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -20,7 +19,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/OrionsPets$AppRunner.ic" NAME="AppRunner Coverage Results" MODIFIED="1532613357918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/OrionsPets$All_in_OrionsPets.ic" NAME="All in OrionsPets Coverage Results" MODIFIED="1532613405644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/OrionsPets$All_in_OrionsPets.ic" NAME="All in OrionsPets Coverage Results" MODIFIED="1532614557727" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -35,17 +34,14 @@
     <option name="OUTPUT_DIRECTORY" value="C:\Users\oWolf-Hubbard\IdeaProjects\OrionsPets\exportToHTML" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.42115027">
+    <splitter split-orientation="horizontal" split-proportion="0.44424242">
       <split-first>
         <leaf>
-          <file leaf-file-name="PetService.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/PetService.java">
+          <file leaf-file-name="AuthenticationService.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/AuthenticationService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
-                  <folding>
-                    <element signature="method#validatePet#0;class#PetService#0" />
-                  </folding>
+                <state relative-caret-position="440">
+                  <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
                 </state>
               </provider>
             </entry>
@@ -54,11 +50,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="PetServiceTest.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTest.java">
+          <file leaf-file-name="AuthenticationServiceTests.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/AuthenticationServiceTests.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="606">
-                  <caret line="97" column="40" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
+                <state relative-caret-position="704">
+                  <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -124,12 +123,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/CustomerController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/SetUpController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/PetController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/AuthenticationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/repositories/PetRepository.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/PetService.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/AuthenticationService.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/AuthenticationServiceTests.java" />
       </list>
     </option>
   </component>
@@ -272,15 +272,6 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="OrionsPets" type="462c0819:PsiDirectoryNode" />
-              <item name="DTOs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OrionsPets" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OrionsPets" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="OrionsPets" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -323,7 +314,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.All in OrionsPets">
+  <component name="RunManager" selected="JUnit.AuthenticationServiceTests.authenticateHappyPath">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -379,7 +370,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="PetServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AuthenticationServiceTests.authenticateHappyPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OrionsPets" />
       <extension name="coverage">
         <pattern>
@@ -390,7 +381,30 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.catalyte.OrionsPets.services" />
-      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.PetServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.AuthenticationServiceTests" />
+      <option name="METHOD_NAME" value="authenticateHappyPath" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="PetServiceTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="OrionsPets" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.catalyte.OrionsPets.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.catalyte.OrionsPets.services" />
+      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.PetServiceTests" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -402,7 +416,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="PetServiceTest.createPetHappyPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PetServiceTests.deletePetHappyPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OrionsPets" />
       <extension name="coverage">
         <pattern>
@@ -413,30 +427,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.catalyte.OrionsPets.services" />
-      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.PetServiceTest" />
-      <option name="METHOD_NAME" value="createPetHappyPath" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="PetServiceTest.deletePetHappyPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="OrionsPets" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.catalyte.OrionsPets.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.catalyte.OrionsPets.services" />
-      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.PetServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.PetServiceTests" />
       <option name="METHOD_NAME" value="deletePetHappyPath" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -448,7 +439,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="PetServiceTest.updatePetHappyPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PetServiceTests.updatePetHappyPath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="OrionsPets" />
       <extension name="coverage">
         <pattern>
@@ -459,7 +450,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.catalyte.OrionsPets.services" />
-      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.PetServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="com.catalyte.OrionsPets.services.PetServiceTests" />
       <option name="METHOD_NAME" value="updatePetHappyPath" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -644,19 +635,19 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.AppRunner" />
-      <item itemvalue="JUnit.PetServiceTest.createPetHappyPath" />
-      <item itemvalue="JUnit.PetServiceTest" />
-      <item itemvalue="JUnit.PetServiceTest.updatePetHappyPath" />
+      <item itemvalue="JUnit.PetServiceTests" />
+      <item itemvalue="JUnit.PetServiceTests.updatePetHappyPath" />
       <item itemvalue="JUnit.All in OrionsPets" />
-      <item itemvalue="JUnit.PetServiceTest.deletePetHappyPath" />
+      <item itemvalue="JUnit.PetServiceTests.deletePetHappyPath" />
+      <item itemvalue="JUnit.AuthenticationServiceTests.authenticateHappyPath" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AuthenticationServiceTests.authenticateHappyPath" />
         <item itemvalue="JUnit.All in OrionsPets" />
-        <item itemvalue="JUnit.PetServiceTest.deletePetHappyPath" />
-        <item itemvalue="JUnit.PetServiceTest.updatePetHappyPath" />
-        <item itemvalue="JUnit.PetServiceTest" />
-        <item itemvalue="JUnit.PetServiceTest.createPetHappyPath" />
+        <item itemvalue="JUnit.PetServiceTests.deletePetHappyPath" />
+        <item itemvalue="JUnit.PetServiceTests.updatePetHappyPath" />
+        <item itemvalue="JUnit.PetServiceTests" />
       </list>
     </recent_temporary>
   </component>
@@ -683,23 +674,11 @@
       <workItem from="1532553054660" duration="3588000" />
       <workItem from="1532563574392" duration="3284000" />
       <workItem from="1532566934540" duration="7948000" />
-      <workItem from="1532609229623" duration="5168000" />
+      <workItem from="1532609229623" duration="6204000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PetServiceTest_searchPetsSadPath - 2018.07.25 at 21h 47m 11s.xml">
-      <configuration name="PetServiceTest.searchPetsSadPath" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PetServiceTest_searchPetsSadPath - 2018.07.25 at 21h 47m 38s.xml">
-      <configuration name="PetServiceTest.searchPetsSadPath" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PetServiceTest_validateSadPath - 2018.07.25 at 21h 39m 54s.xml">
-      <configuration name="PetServiceTest.validateSadPath" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="PetServiceTest_validateSadPath - 2018.07.25 at 21h 40m 18s.xml">
-      <configuration name="PetServiceTest.validateSadPath" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="PetServiceTest - 2018.07.26 at 09h 09m 50s.xml">
       <configuration name="PetServiceTest" configurationId="JUnit" />
     </history-entry>
@@ -718,9 +697,21 @@
     <history-entry file="All_in_OrionsPets - 2018.07.26 at 09h 56m 48s.xml">
       <configuration name="All in OrionsPets" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="PetServiceTest_deletePetHappyPath - 2018.07.26 at 10h 13m 25s.xml">
+      <configuration name="PetServiceTest.deletePetHappyPath" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PetServiceTest_deletePetHappyPath - 2018.07.26 at 10h 15m 15s.xml">
+      <configuration name="PetServiceTest.deletePetHappyPath" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="PetServiceTest_deletePetHappyPath - 2018.07.26 at 10h 15m 33s.xml">
+      <configuration name="PetServiceTest.deletePetHappyPath" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_OrionsPets - 2018.07.26 at 10h 16m 00s.xml">
+      <configuration name="All in OrionsPets" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73209000" />
+    <option name="totallyTimeSpent" value="74245000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -756,8 +747,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
       <window_info anchor="bottom" id="Spring" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32936078" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.23400854" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32897604" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.120469086" />
       <window_info anchor="right" id="Bean Validation" order="8" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="9" />
@@ -813,7 +804,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -821,43 +812,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/Pet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-          <folding>
-            <element signature="e#630#631#0" />
-            <element signature="e#650#651#0" />
-            <element signature="e#686#687#0" />
-            <element signature="e#710#711#0" />
-            <element signature="e#737#738#0" />
-            <element signature="e#756#757#0" />
-            <element signature="e#790#791#0" />
-            <element signature="e#812#813#0" />
-            <element signature="e#841#842#0" />
-            <element signature="e#862#863#0" />
-            <element signature="e#900#901#0" />
-            <element signature="e#926#927#0" />
-            <element signature="e#956#957#0" />
-            <element signature="e#978#979#0" />
-            <element signature="e#1018#1019#0" />
-            <element signature="e#1046#1047#0" />
-            <element signature="e#1080#1081#0" />
-            <element signature="e#1106#1107#0" />
-            <element signature="e#1154#1155#0" />
-            <element signature="e#1190#1191#0" />
-            <element signature="e#1215#1216#0" />
-            <element signature="e#1235#1236#0" />
-            <element signature="e#1268#1269#0" />
-            <element signature="e#1292#1293#0" />
-            <element signature="e#1321#1322#0" />
-            <element signature="e#1342#1343#0" />
-            <element signature="e#1381#1382#0" />
-            <element signature="e#1407#1408#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/InventoryServices.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/models/PurchaseItem.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1068,7 +1022,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/CustomerServiceTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/CustomerServiceTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
@@ -1135,17 +1089,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/AuthenticationService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#415#416#0" />
-            <element signature="e#461#462#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1244,20 +1187,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1782">
+          <caret line="98" column="59" lean-forward="true" selection-start-line="98" selection-start-column="59" selection-end-line="98" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/PetService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+        <state relative-caret-position="394">
+          <caret line="101" column="6" lean-forward="true" selection-start-line="101" selection-start-column="6" selection-end-line="101" selection-end-column="6" />
           <folding>
             <element signature="method#validatePet#0;class#PetService#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PetServiceTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/AuthenticationService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="97" column="40" selection-start-line="97" selection-start-column="40" selection-end-line="97" selection-end-column="40" />
+        <state relative-caret-position="440">
+          <caret line="23" column="2" lean-forward="true" selection-start-line="23" selection-start-column="2" selection-end-line="23" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/AuthenticationServiceTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

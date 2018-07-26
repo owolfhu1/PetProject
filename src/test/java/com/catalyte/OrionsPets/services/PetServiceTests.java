@@ -19,7 +19,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class PetServiceTest {
+public class PetServiceTests {
 
   private PetService classToTest;
 

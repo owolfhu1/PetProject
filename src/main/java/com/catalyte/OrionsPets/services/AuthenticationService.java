@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationService {
 
-  UserRepository userRepository;
+  private UserRepository userRepository;
 
   @Autowired
   public AuthenticationService(UserRepository userRepository) {
@@ -20,8 +20,6 @@ public class AuthenticationService {
         userRepository.findOneByUsername(username).getPassword().equals(password) &&
         new UserDTO(userRepository.findOneByUsername(username)).hasRole(role) ;
   }
-
-
 
 
 

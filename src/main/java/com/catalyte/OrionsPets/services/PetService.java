@@ -1,18 +1,17 @@
 package com.catalyte.OrionsPets.services;
 
+import com.catalyte.OrionsPets.DTOs.InventoryDTO;
+import com.catalyte.OrionsPets.models.Inventory;
 import com.catalyte.OrionsPets.models.Pet;
-import com.catalyte.OrionsPets.models.PetType;
+import com.catalyte.OrionsPets.repositories.InventoryRepository;
 import com.catalyte.OrionsPets.repositories.PetRepository;
 import com.catalyte.OrionsPets.repositories.PetTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.mapping.TextScore;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Text;
 
 
 @Service
@@ -20,15 +19,18 @@ public class PetService {
 
     private AuthenticationService authenticationService;
     private PetTypeRepository petTypeRepository;
+    private InventoryRepository inventoryRepository;
     private PetRepository petRepository;
 
     @Autowired
     public PetService(AuthenticationService authenticationService,
                       PetTypeRepository petTypeRepository,
+                      InventoryRepository inventoryRepository,
                       PetRepository petRepository) {
         this.authenticationService = authenticationService;
         this.petTypeRepository = petTypeRepository;
         this.petRepository = petRepository;
+        this.inventoryRepository = inventoryRepository;
     }
 
 
@@ -64,20 +66,25 @@ public class PetService {
         return list;
     }
 
-    public boolean creatPet(Pet pet, String type) {
-
-
-
-
-        return false;
+    public String creatPet(Pet pet, String type) {
+        String validation = validatePet(pet,type);
+        if (validation.isEmpty()) {
+            String petTypeId = petTypeRepository.findByType(type).getId();
+            pet.setPetTypeId(petTypeId);
+            Inventory inventory = inventoryRepository.findByPetTypeId(petTypeId);
+            InventoryDTO invDTO = new InventoryDTO(inventory);
+            invDTO.addInventory(1);
+            petRepository.save(pet);
+            inventoryRepository.save(inventory);
+            return "Pet created";
+        }
+        else return validation;
     }
-
 
     public String validatePet(Pet pet, String type) {
 
-        if (petTypeRepository.existsByType(type))
-            pet.setPetTypeId(petTypeRepository.findByType(type).getId());
-        else return "Bad pet type";
+        if (!petTypeRepository.existsByType(type))
+            return "Bad pet type";
 
         if (pet.getName().isEmpty() || pet.getName().split(" ").length == 0)
             return "Pet name required";

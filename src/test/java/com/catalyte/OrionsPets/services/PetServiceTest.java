@@ -19,15 +19,10 @@ import static org.junit.Assert.assertNotEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-/**
- * Created by Orion Wolf_Hubbard on 7/25/2018.
- */
 public class PetServiceTest {
 
     private PetService classToTest;
 
-    @Mock
-    private AuthenticationService authServMock;
     @Mock
     private PetTypeRepository typeRepoMock;
     @Mock
@@ -38,32 +33,7 @@ public class PetServiceTest {
     @Before
     public void before() {
         initMocks(this);
-        classToTest = new PetService(authServMock, typeRepoMock, invRepoMock, petRepoMock);
-    }
-
-    @Test
-    public void validateHappyPath() {
-        Pet pet = new Pet("petTypeId","name",1,"color","male");
-        String type = "dog";
-        PetType petType = new PetType("dog");
-        petType.setId("DUMMY_ID_STRING_1234");
-        doReturn(true).when(typeRepoMock).existsByType(type);
-        doReturn(petType).when(typeRepoMock).findByType(type);
-        String result = classToTest.validatePet(pet,type);
-        assertEquals(result, "");
-    }
-
-    @Test
-    public void validateSadPath() {
-        Pet pet = new Pet("", "dd", -1, "blue", "male");
-        String type = "";
-        PetType petType = new PetType("");
-        petType.setId("");
-        doReturn(true).when(typeRepoMock).existsByType(type);
-        doReturn(petType).when(typeRepoMock).findByType(type);
-        String result = classToTest.validatePet(pet, type);
-        System.out.println("result: '" + result + "'");
-        assertNotEquals(result, "");
+        classToTest = new PetService(typeRepoMock, invRepoMock, petRepoMock);
     }
 
     @Test
@@ -91,12 +61,42 @@ public class PetServiceTest {
         doReturn(true).when(typeRepoMock).existsByType(type);
         doReturn(petType).when(typeRepoMock).findByType(type);
         doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(petType.getId());
-        String result = classToTest.creatPet(pet,type);
+        String result = classToTest.createPet(pet,type);
         assertEquals("Pet created", result);
     }
 
     @Test
-    public void createPetSadPath() {}
+    public void createPetSadPath() {
+        Pet pet = new Pet("", "dd", -1, "blue", "male");
+        String type = "";
+        PetType petType = new PetType("");
+        petType.setId("");
+        doReturn(true).when(typeRepoMock).existsByType(type);
+        doReturn(petType).when(typeRepoMock).findByType(type);
+        doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(petType.getId());
+        String result = classToTest.createPet(pet,type);
+        assertNotEquals("Pet created", result);
+    }
+
+    @Test
+    public void updatePetHappyPath() {
+        //TODO
+    }
+
+    @Test void updatePetSadPath() {
+        //TODO
+    }
+
+    @Test
+    public void deletePetHappyPath() {
+        //TODO
+    }
+
+    @Test
+    public void deletePetSadPath() {
+        //TODO
+    }
+
 
 }
 

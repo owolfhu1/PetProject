@@ -17,17 +17,14 @@ import java.util.List;
 @Service
 public class PetService {
 
-    private AuthenticationService authenticationService;
     private PetTypeRepository petTypeRepository;
     private InventoryRepository inventoryRepository;
     private PetRepository petRepository;
 
     @Autowired
-    public PetService(AuthenticationService authenticationService,
-                      PetTypeRepository petTypeRepository,
+    public PetService(PetTypeRepository petTypeRepository,
                       InventoryRepository inventoryRepository,
                       PetRepository petRepository) {
-        this.authenticationService = authenticationService;
         this.petTypeRepository = petTypeRepository;
         this.petRepository = petRepository;
         this.inventoryRepository = inventoryRepository;
@@ -66,7 +63,7 @@ public class PetService {
         return list;
     }
 
-    public String creatPet(Pet pet, String type) {
+    public String createPet(Pet pet, String type) {
         String validation = validatePet(pet,type);
         if (validation.isEmpty()) {
             String petTypeId = petTypeRepository.findByType(type).getId();
@@ -81,7 +78,24 @@ public class PetService {
         else return validation;
     }
 
-    public String validatePet(Pet pet, String type) {
+    public String updatePet(Pet pet) {
+        return null;
+        //TODO
+    }
+
+    public String deletePet(String petId) {
+        return null;
+        //TODO
+    }
+
+
+
+
+
+
+
+
+    private String validatePet(Pet pet, String type) {
 
         if (!petTypeRepository.existsByType(type))
             return "Bad pet type";
@@ -106,8 +120,5 @@ public class PetService {
 
         return "";
     }
-
-
-
 
 }

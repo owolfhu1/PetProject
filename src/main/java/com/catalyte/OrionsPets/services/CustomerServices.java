@@ -11,13 +11,10 @@ import org.springframework.stereotype.Service;
 public class CustomerServices {
 
   private CustomerRepository customerRepository;
-  private AuthenticationServices authenticationServices;
 
   @Autowired
-  public CustomerServices(CustomerRepository customerRepository,
-                         AuthenticationServices authenticationServices) {
+  public CustomerServices(CustomerRepository customerRepository) {
     this.customerRepository = customerRepository;
-    this.authenticationServices = authenticationServices;
   }
 
   public List<Customer> searchCustomers(String type, String value) {

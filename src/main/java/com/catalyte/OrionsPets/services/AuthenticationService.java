@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Authenticate {
+public class AuthenticationService {
 
   UserRepository userRepository;
 
   @Autowired
-  public Authenticate(UserRepository userRepository) {
+  public AuthenticationService(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
 
@@ -20,5 +20,9 @@ public class Authenticate {
         userRepository.findOneByUsername(username).getPassword().equals(password) &&
         new UserDTO(userRepository.findOneByUsername(username)).hasRole(role) ;
   }
+
+
+
+
 
 }

@@ -16,7 +16,6 @@ public class Pet {
   private boolean sold = false;
 
   public Pet() {
-    sold = false;
   }
 
   public Pet(String petTypeId, String name, int age, String color, String sex) {

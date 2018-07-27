@@ -1,7 +1,6 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Pet;
-import com.catalyte.OrionsPets.resorces.DataNotFoundException;
 import com.catalyte.OrionsPets.services.AuthenticationServices;
 import com.catalyte.OrionsPets.services.PetServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +32,25 @@ public class PetController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createPet(@RequestHeader String username, @RequestHeader String password,
                             @RequestBody Pet pet) {
+        if (authenticationServices.authenticate(username,password,"ADMIN"))
+            return petServices.createPet(pet);
+        return "Not authorized";
+    }
 
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public String updatePet(@RequestHeader String username, @RequestHeader String password,
+                            @RequestBody Pet pet) {
+        if (authenticationServices.authenticate(username,password,"ADMIN"))
+            return petServices.updatePet(pet);
+        return "Not authorized";
+    }
 
-        return null;
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
+    public String deletePet(@RequestHeader String username, @RequestHeader String password,
+                            @PathVariable String id) {
+        if (authenticationServices.authenticate(username,password,"ADMIN"))
+            return petServices.deletePet(id);
+        return "Not authorized";
     }
 
 

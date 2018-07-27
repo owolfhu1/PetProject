@@ -46,17 +46,28 @@ public class PetControllerTests {
 
     @Test
     public void createPetHappyPath() {
-
+        String expected = "Pet created";
+        Pet pet = new Pet();
+        doReturn(expected).when(petServMock).createPet(pet);
+        String result = classToTest.createPet(USER,PASS,pet);
+        assertEquals(expected,result);
     }
 
     @Test
     public void updatePetsHappyPath() {
-
+        String expected = "Pet updated";
+        Pet pet = new Pet();
+        doReturn(expected).when(petServMock).updatePet(pet);
+        String result = classToTest.updatePet(USER,PASS,pet);
+        assertEquals(expected,result);
     }
 
     @Test
     public void deletePetsHappyPath() {
-
+        String expected = "Pet deleted";
+        doReturn(expected).when(petServMock).deletePet("id");
+        String result = classToTest.deletePet(USER,PASS,"id");
+        assertEquals(expected,result);
     }
 
 

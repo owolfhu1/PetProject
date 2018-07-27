@@ -26,25 +26,28 @@ public class CustomerControllertests {
   @Mock
   AuthenticationServices authServMock;
 
+  private String USER = "user";
+  private String PASS = "pass";
+
   @Before
   public void before() {
     initMocks(this);
-    doReturn(true).when(authServMock).authenticate("user","pass","ADMIN");
+    doReturn(true).when(authServMock).authenticate(USER, PASS, "ADMIN");
   }
 
   @Test
   public void searchHappyPath() {
-    List<Customer> expected = Arrays.asList(new Customer(),new Customer());
-    doReturn(expected).when(custServMock).searchCustomers("test","test");
-    List<Customer> result = classToTest.searchCustomers("test","test");
-    assertEquals(expected,result);
+    List<Customer> expected = Arrays.asList(new Customer(), new Customer());
+    doReturn(expected).when(custServMock).searchCustomers("test", "test");
+    List<Customer> result = classToTest.searchCustomers("test", "test");
+    assertEquals(expected, result);
   }
 
   @Test
   public void createCustomerHappyPath() {
     Customer customer = new Customer();
     doReturn(true).when(custServMock).createCustomer(customer);
-    String result = classToTest.createCustomer("user","pass",customer);
+    String result = classToTest.createCustomer(USER, PASS, customer);
     assertEquals("Customer added", result);
   }
 
@@ -52,18 +55,23 @@ public class CustomerControllertests {
   public void createCustomerDepressedPath() {
     Customer customer = new Customer();
     doReturn(false).when(custServMock).createCustomer(customer);
-    String result = classToTest.createCustomer("user","pass",customer);
+    String result = classToTest.createCustomer(USER, PASS, customer);
     assertNotEquals("Customer added", result);
   }
 
   @Test
   public void updateCustomerHappyPath() {
-
+    Customer customer = new Customer();
+    doReturn(true).when(custServMock).updateCustomer(customer,"id");
+    String result = classToTest.updateCustomer(USER,PASS,customer,"id");
+    assertEquals("Customer updated",result);
   }
 
   @Test
   public void deleteCustomerHappyPath() {
-
+    doReturn(true).when(custServMock).deleteCustomer("id");
+    String result = classToTest.deleteCustomer(USER,PASS,"id");
+    assertEquals("Customer deleted",result);
   }
 
 }

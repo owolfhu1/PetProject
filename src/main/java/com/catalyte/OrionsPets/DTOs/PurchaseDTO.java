@@ -22,4 +22,27 @@ public class PurchaseDTO {
     purchase.setTotalPrice(total);
   }
 
+  private boolean hasItem(String petId) {
+    for (PurchaseItem item : purchase.getItems())
+      if (item.getPetId().equals(petId))
+        return true;
+    return false;
+  }
+
+  public boolean removeItem(String petId) {
+    if (hasItem(petId)) {
+      PurchaseItem[] items = new PurchaseItem[purchase.getItems().length - 1];
+      int index = 0;
+      for (PurchaseItem item : purchase.getItems()) {
+        if(!item.getPetId().equals(petId)) {
+          items[index] = item;
+          index++;
+        }
+      }
+      purchase.setItems(items);
+      return true;
+    }
+    return false;
+  }
+
 }

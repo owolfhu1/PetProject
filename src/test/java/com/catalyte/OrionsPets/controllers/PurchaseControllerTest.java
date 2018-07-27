@@ -1,12 +1,18 @@
 package com.catalyte.OrionsPets.controllers;
 
+import com.catalyte.OrionsPets.models.Purchase;
+import com.catalyte.OrionsPets.models.PurchaseItem;
 import com.catalyte.OrionsPets.services.AuthenticationServices;
 import com.catalyte.OrionsPets.services.PurchaseServices;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 /**
@@ -14,26 +20,55 @@ import static org.mockito.MockitoAnnotations.initMocks;
  */
 public class PurchaseControllerTest {
 
-    @InjectMocks
-    private PurchaseController classToTest;
+  @InjectMocks
+  private PurchaseController classToTest;
 
-    @Mock
-    private PurchaseServices purchServMock;
+  @Mock
+  private PurchaseServices purchServMock;
 
-    @Mock
-    private AuthenticationServices authServMock;
+  @Mock
+  private AuthenticationServices authServMock;
 
-    @Before
-    public void before() {
-        initMocks(this);
-    }
+  private String USER = "user";
+  private String PASS = "pass";
+  private String dummyId = "DUMMY_ID";
 
-    @Test public void test(){}
-    @Test public void test1(){}
-    @Test public void test2(){}
-    @Test public void test3(){}
-    @Test public void test4(){}
-    @Test public void test5(){}
-    @Test public void test6(){}
+  @Before
+  public void before() {
+    initMocks(this);
+    doReturn(true).when(authServMock).authenticate(USER, PASS, "ADMIN");
+  }
+
+  @Test
+  public void searchPurchasesHappyPath() {
+    List<Purchase> expected = new ArrayList<>();
+    doReturn(expected).when(purchServMock).searchPurchases("id");
+    List<Purchase> result = classToTest.searchPurchasesByCustomerId("id");
+    assertEquals(expected, result);
+
+  }
+
+  @Test
+  public void createPurchaseHappyPath() {
+    String[] items = new String[1];
+    items[0] = dummyId;
+    doReturn(dummyId).when(purchServMock).createPurchase(dummyId,items);
+    String result = classToTest.createPurchase(USER,PASS,dummyId,items);
+    assertEquals(dummyId,result);
+  }
+
+  @Test
+  public void returnPetHappyPath() {
+    doReturn(dummyId).when(purchServMock).returnPet(dummyId,dummyId);
+    String result = classToTest.returnPet(USER,PASS,dummyId,dummyId);
+    assertEquals(dummyId,result);
+  }
+
+  @Test
+  public void deletePurchaseHappyPath() {
+    doReturn(dummyId).when(purchServMock).deletePurchase(dummyId);
+    String result = classToTest.deletePurchase(USER,PASS,dummyId);
+    assertEquals(dummyId,result);
+  }
 
 }

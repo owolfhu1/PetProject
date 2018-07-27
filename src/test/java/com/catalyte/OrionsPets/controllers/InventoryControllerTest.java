@@ -2,14 +2,13 @@ package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Inventory;
 import com.catalyte.OrionsPets.models.PetType;
-import com.catalyte.OrionsPets.resorces.DataNotFoundException;
 import com.catalyte.OrionsPets.services.AuthenticationServices;
 import com.catalyte.OrionsPets.services.InventoryServices;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
+import static org.mockito.ArgumentMatchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -45,13 +44,12 @@ public class InventoryControllerTest {
         assertEquals(expected,result);
     }
 
-//    @Test
-//    public void createInventoryHappyPath() {
-//        PetType pt = new PetType("abc");
-//        doReturn(true).when(invServMock).createInventory(pt,1.99);
-//        String result = classToTest.createInventory(USER,PASS,"abc",1.99);
-//        assertEquals("Inventory created",result);
-//    }
+    @Test
+    public void createInventoryHappyPath() {
+        doReturn(true).when(invServMock).createInventory(any(PetType.class),any(Double.class));
+        String result = classToTest.createInventory(USER,PASS,"abc",1.99);
+        assertEquals("Inventory created",result);
+    }
 
     @Test
     public void deleteInventoryHappyPath() {

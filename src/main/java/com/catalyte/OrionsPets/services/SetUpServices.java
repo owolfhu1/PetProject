@@ -59,13 +59,18 @@ public class SetUpServices {
     this.userRepository = userRepository;
   }
 
-  public void clearDatabase() {
-    customerRepository.deleteAll();
-    inventoryRepository.deleteAll();
-    petRepository.deleteAll();
-    petTypeRepository.deleteAll();
-    purchaseRepository.deleteAll();
-    userRepository.deleteAll();
+  public boolean clearDatabase() {
+    try {
+      customerRepository.deleteAll();
+      inventoryRepository.deleteAll();
+      petRepository.deleteAll();
+      petTypeRepository.deleteAll();
+      purchaseRepository.deleteAll();
+      userRepository.deleteAll();
+      return true;
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   public boolean createDummyData() {
@@ -112,6 +117,7 @@ public class SetUpServices {
     for (int i = 0; i < NUMB_OF_PETS; i++) {
       Inventory inventory = inventoryRepository.findByPetTypeId(petTypeIds[rand.nextInt(petTypeIds.length)]);
       InventoryDTO invDTO = new InventoryDTO(inventory);
+      System.out.println(inventory);
       invDTO.addInventory(1);
       inventoryRepository.save(inventory);
       Pet pet = new Pet(inventory.getPetTypeId(), randomName(),rand.nextInt(MAX_PET_AGE)+1, randomColor(), rand.nextBoolean() ? "male":"female");

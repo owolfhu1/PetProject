@@ -32,25 +32,22 @@ public class PetController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createPet(@RequestHeader String username, @RequestHeader String password,
                             @RequestBody Pet pet) {
-        if (authenticationServices.authenticate(username,password,"ADMIN"))
-            return petServices.createPet(pet);
-        return "Not authorized";
+        return authenticationServices.authenticate(username,password,"ADMIN") ?
+                petServices.createPet(pet) : "Not authorized";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     public String updatePet(@RequestHeader String username, @RequestHeader String password,
                             @RequestBody Pet pet) {
-        if (authenticationServices.authenticate(username,password,"ADMIN"))
-            return petServices.updatePet(pet);
-        return "Not authorized";
+        return authenticationServices.authenticate(username,password,"ADMIN") ?
+                petServices.updatePet(pet) : "Not authorized";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
     public String deletePet(@RequestHeader String username, @RequestHeader String password,
                             @PathVariable String id) {
-        if (authenticationServices.authenticate(username,password,"ADMIN"))
-            return petServices.deletePet(id);
-        return "Not authorized";
+        return authenticationServices.authenticate(username,password,"ADMIN") ?
+                petServices.deletePet(id) : "Not authorized";
     }
 
 

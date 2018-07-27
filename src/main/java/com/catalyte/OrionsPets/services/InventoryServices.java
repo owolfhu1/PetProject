@@ -33,26 +33,28 @@ public class InventoryServices {
   }
 
   public boolean createInventory(PetType petType, double price) {
+    boolean result = false;
     if (!petTypeRepository.existsByType(petType.getType())) {
       String petTypeId = petTypeRepository.save(petType).getId();
       Inventory inventory = new Inventory();
       inventory.setPetTypeId(petTypeId);
       inventory.setPrice(price);
       inventoryRepository.save(inventory);
-      return true;
+      result = true;
     }
-    return false;
+    return result;
   }
 
   public boolean deleteInventory(String petType) {
+    boolean result = false;
     if (petTypeRepository.existsByType(petType)) {
       String petTypeId = petTypeRepository.findByType(petType).getId();
       petRepository.deleteByPetTypeId(petTypeId);
       inventoryRepository.deleteByPetTypeId(petTypeId);
       petTypeRepository.deleteById(petTypeId);
-      return true;
+      result = true;
     }
-    return false;
+    return result;
   }
 
 }

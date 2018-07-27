@@ -33,20 +33,17 @@ public class InventoryController {
   @RequestMapping(value = "/create/{petType}/{price}", method = RequestMethod.POST)
   public String createInventory(@RequestHeader String username, @RequestHeader String password,
       @PathVariable String petType, @PathVariable double price) {
-    if (authenticationServices.authenticate(username,password,"ADMIN")) {
-      PetType pt = new PetType(petType);
-      return inventoryServices.createInventory(pt, price) ? "Inventory created"
-          : "Inventory already exists.";
-    }
-    return "Not authorized";
+    PetType pt = new PetType(petType);
+    return authenticationServices.authenticate(username,password,"ADMIN") ?
+            (inventoryServices.createInventory(pt, price) ? "Inventory created" : "Inventory already exists.") :
+            "Not authorized";
   }
 
   @RequestMapping(value = "/delete/{petType}", method = RequestMethod.DELETE)
   public String deleteInventory(@RequestHeader String username, @RequestHeader String password,
       @PathVariable String petType) {
-    if (authenticationServices.authenticate(username,password,"ADMIN"))
-      return inventoryServices.deleteInventory(petType) ? "Inventory deleted" : "Inventory not found.";
-    return "Not authorized";
+    return authenticationServices.authenticate(username,password,"ADMIN") ?
+            (inventoryServices.deleteInventory(petType) ? "Inventory deleted" : "Inventory not found.") : "Not authorized";
   }
 
 }

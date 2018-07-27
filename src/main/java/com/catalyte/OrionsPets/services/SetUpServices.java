@@ -13,6 +13,7 @@ import com.catalyte.OrionsPets.repositories.PurchaseRepository;
 
 import com.catalyte.OrionsPets.repositories.UserRepository;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,7 +118,6 @@ public class SetUpServices {
     for (int i = 0; i < NUMB_OF_PETS; i++) {
       Inventory inventory = inventoryRepository.findByPetTypeId(petTypeIds[rand.nextInt(petTypeIds.length)]);
       InventoryDTO invDTO = new InventoryDTO(inventory);
-      System.out.println(inventory);
       invDTO.addInventory(1);
       inventoryRepository.save(inventory);
       Pet pet = new Pet(inventory.getPetTypeId(), randomName(),rand.nextInt(MAX_PET_AGE)+1, randomColor(), rand.nextBoolean() ? "male":"female");
@@ -137,7 +137,8 @@ public class SetUpServices {
     petRepository.findAll().forEach(pet -> petIds.add(pet.getId()));
     for (int i = 0; i < NUMB_OF_PURCHASES; i++){
       Purchase purchase = new Purchase();
-      purchase.setCustomerId(customerIds.get(rand.nextInt(customerIds.size())));
+      if (customerIds.size() > 0)
+        purchase.setCustomerId(customerIds.get(rand.nextInt(customerIds.size())));
       int numbOfPets = rand.nextInt(MAX_PETS_PER_PURCHASE)+1;
       for (int x = 0; x < numbOfPets; x++){
         if (petIds.size() > 5) {//don't sell everything!!

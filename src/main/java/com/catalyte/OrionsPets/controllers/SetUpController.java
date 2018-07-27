@@ -24,7 +24,7 @@ public class SetUpController {
   }
 
   @RequestMapping(value = "create", method = RequestMethod.GET)
-  public String createDummyPetTypes() {
+  public String createDummyData() {
     return setUpServices.createDummyData() ? "Dummy data created" :
             "There is already data in the database, please clear it before proceeding.";
   }

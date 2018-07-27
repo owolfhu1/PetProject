@@ -35,28 +35,25 @@ public class CustomerController {
   @RequestMapping(value = "/create", method = RequestMethod.POST)
   public String createCustomer(@RequestHeader String username, @RequestHeader String password,
       @RequestBody Customer customer) {
-    if (authenticationServices.authenticate(username,password,"ADMIN")){
-      return customerServices.createCustomer(customer) ? "Customer added" : "Invalid customer provided.";
-    }
-    return "Access denied";
+    return authenticationServices.authenticate(username,password,"ADMIN") ?
+            (customerServices.createCustomer(customer) ? "Customer added" : "Invalid customer provided.") :
+            "Access denied";
   }
 
   @RequestMapping(value = "/update/{customerId}", method = RequestMethod.PUT)
   public String updateCustomer(@RequestHeader String username, @RequestHeader String password,
       @RequestBody Customer customer, @PathVariable("customerId") String customerId) {
-    if (authenticationServices.authenticate(username,password,"ADMIN")){
-      return customerServices.updateCustomer(customer,customerId) ? "Customer updated" : "Invalid data provided";
-    }
-    return "Access denied";
+    return authenticationServices.authenticate(username,password,"ADMIN") ?
+            (customerServices.updateCustomer(customer,customerId) ? "Customer updated" : "Invalid data provided") :
+            "Access denied";
   }
 
   @RequestMapping(value = "/delete/{customerId}", method = RequestMethod.DELETE)
   public String deleteCustomer(@RequestHeader String username, @RequestHeader String password,
       @PathVariable("customerId") String customerId) {
-    if (authenticationServices.authenticate(username,password,"ADMIN")){
-      return customerServices.deleteCustomer(customerId) ? "Customer deleted" : "Invalid data provided";
-    }
-    return "Access denied";
+    return authenticationServices.authenticate(username,password,"ADMIN") ?
+            (customerServices.deleteCustomer(customerId) ? "Customer deleted" : "Invalid data provided") :
+            "Access denied";
   }
 
 }

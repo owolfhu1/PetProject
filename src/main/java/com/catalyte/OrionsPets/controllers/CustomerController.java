@@ -44,7 +44,7 @@ public class CustomerController {
   public String updateCustomer(@RequestHeader String username, @RequestHeader String password,
       @RequestBody Customer customer, @PathVariable("customerId") String customerId) {
     if (authenticationServices.authenticate(username,password,"ADMIN")){
-      return customerServices.updateCustomer(customer,customerId) ? "Customer updated." : "Invalid data provided";
+      return customerServices.updateCustomer(customer,customerId) ? "Customer updated" : "Invalid data provided";
     }
     return "Access denied";
   }
@@ -53,7 +53,7 @@ public class CustomerController {
   public String deleteCustomer(@RequestHeader String username, @RequestHeader String password,
       @PathVariable("customerId") String customerId) {
     if (authenticationServices.authenticate(username,password,"ADMIN")){
-      return customerServices.deleteCustomer(customerId) ? "Customer deleted." : "Invalid data provided";
+      return customerServices.deleteCustomer(customerId) ? "Customer deleted" : "Invalid data provided";
     }
     return "Access denied";
   }

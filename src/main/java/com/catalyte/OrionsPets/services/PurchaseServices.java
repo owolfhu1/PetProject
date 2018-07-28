@@ -33,6 +33,10 @@ public class PurchaseServices {
   }
 
 
+  public List<Purchase> findAll() {
+    return purchaseRepository.findAll();
+  }
+
   public List<Purchase> searchPurchases(String customerId) {
     return purchaseRepository.findByCustomerId(customerId);
   }

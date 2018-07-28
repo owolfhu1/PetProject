@@ -3,6 +3,7 @@ package com.catalyte.OrionsPets.controllers;
 import com.catalyte.OrionsPets.models.Pet;
 import com.catalyte.OrionsPets.services.AuthenticationServices;
 import com.catalyte.OrionsPets.services.PetServices;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -33,6 +34,12 @@ public class PetControllerTests {
     public void before() {
         initMocks(this);
         doReturn(true).when(authServMock).authenticate(USER,PASS,"ADMIN");
+    }
+
+    @Test
+    public void findAllHappyPath() {
+        doReturn(new ArrayList()).when(petServMock).findAll();
+        TestCase.assertEquals(new ArrayList(), classToTest.findAll());
     }
 
     @Test

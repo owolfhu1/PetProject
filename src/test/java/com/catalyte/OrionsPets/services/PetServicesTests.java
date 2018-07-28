@@ -61,6 +61,12 @@ public class PetServicesTests {
   }
 
   @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(petRepoMock).findAll();
+    assertEquals(new ArrayList(), classToTest.findAll());
+  }
+
+  @Test
   public void searchPetsSadPath() {
     assertEquals(new ArrayList<Pet>(), classToTest.searchPets("badType", "value"));
   }

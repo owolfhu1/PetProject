@@ -17,6 +17,10 @@ public class CustomerServices {
     this.customerRepository = customerRepository;
   }
 
+  public List<Customer> findAll() {
+    return customerRepository.findAll();
+  }
+
   public List<Customer> searchCustomers(String type, String value) {
     List<Customer> list;
     switch (type) {

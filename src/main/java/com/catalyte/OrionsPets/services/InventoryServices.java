@@ -9,6 +9,8 @@ import com.catalyte.OrionsPets.resorces.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InventoryServices {
 
@@ -23,6 +25,10 @@ public class InventoryServices {
     this.inventoryRepository = inventoryRepository;
     this.petTypeRepository = petTypeRepository;
     this.petRepository = petRepository;
+  }
+
+  public List<Inventory> findAll() {
+    return inventoryRepository.findAll();
   }
 
   public Inventory searchInventoriesByPetType(String petType) throws DataNotFoundException {

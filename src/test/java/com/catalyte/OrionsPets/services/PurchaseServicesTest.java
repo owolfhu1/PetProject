@@ -44,7 +44,14 @@ public class PurchaseServicesTest {
         initMocks(this);
     }
 
-    @Test public void searchPurchasesHappyTest(){
+    @Test
+    public void findAllHappyPath() {
+        doReturn(new ArrayList()).when(purcRepoMock).findAll();
+        assertEquals(new ArrayList(), classToTest.findAll());
+    }
+
+    @Test
+    public void searchPurchasesHappyTest(){
         List<Purchase> expected = new ArrayList<>();
         doReturn(expected).when(purcRepoMock).findByCustomerId("id");
         List<Purchase> result = classToTest.searchPurchases("id");

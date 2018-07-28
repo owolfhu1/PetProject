@@ -8,8 +8,12 @@ import static org.mockito.MockitoAnnotations.initMocks;
 import com.catalyte.OrionsPets.models.Customer;
 import com.catalyte.OrionsPets.services.AuthenticationServices;
 import com.catalyte.OrionsPets.services.CustomerServices;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -33,6 +37,12 @@ public class CustomerControllertests {
   public void before() {
     initMocks(this);
     doReturn(true).when(authServMock).authenticate(USER, PASS, "ADMIN");
+  }
+
+  @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(custServMock).findAll();
+    TestCase.assertEquals(new ArrayList(), classToTest.findAll());
   }
 
   @Test

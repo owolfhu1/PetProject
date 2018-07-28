@@ -11,6 +11,8 @@ import com.catalyte.OrionsPets.models.Customer;
 import com.catalyte.OrionsPets.repositories.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
+
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -65,6 +67,12 @@ public class CustomerServiceTests {
     Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc");
     boolean result = classToTest.createCustomer(customer);
     assertFalse(result);
+  }
+
+  @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(custRepoMock).findAll();
+    TestCase.assertEquals(new ArrayList(), classToTest.findAll());
   }
 
   @Test

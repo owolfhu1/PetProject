@@ -6,6 +6,8 @@ import com.catalyte.OrionsPets.services.AuthenticationServices;
 import com.catalyte.OrionsPets.services.PurchaseServices;
 import java.util.ArrayList;
 import java.util.List;
+
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -37,6 +39,12 @@ public class PurchaseControllerTest {
   public void before() {
     initMocks(this);
     doReturn(true).when(authServMock).authenticate(USER, PASS, "ADMIN");
+  }
+
+  @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(purchServMock).findAll();
+    TestCase.assertEquals(new ArrayList(), classToTest.findAll());
   }
 
   @Test

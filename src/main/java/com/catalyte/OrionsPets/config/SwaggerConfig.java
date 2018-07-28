@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @PropertySource("classpath:swagger.properties")
 @ComponentScan(basePackageClasses = {CustomerController.class, InventoryController.class, PetController.class,
-        PurchaseController.class, SetUpController.class})
+        PurchaseController.class, SetUpController.class, PetTypeController.class})
 @Configuration
 public class SwaggerConfig {
     private static final String SWAGGER_API_VERSION = "1.0";

@@ -15,6 +15,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.ArrayList;
+
 public class InventoryServiceTests {
 
 
@@ -51,6 +53,11 @@ public class InventoryServiceTests {
 
   }
 
+  @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(invRepoMock).findAll();
+    assertEquals(new ArrayList(), classToTest.findAll());
+  }
 
   @Test
   public void createInventoryHappyPath() {

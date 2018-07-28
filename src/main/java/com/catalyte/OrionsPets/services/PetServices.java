@@ -61,6 +61,10 @@ public class PetServices {
     return list;
   }
 
+  public List<Pet> findAll() {
+    return petRepository.findAll();
+  }
+
   public String createPet(Pet pet) {
     String validation = validatePet(pet);
     if (validation.isEmpty()) {

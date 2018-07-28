@@ -10,9 +10,7 @@ public class PetType {
   private String id;
   private String type;
 
-  public PetType() {
-
-  }
+  public PetType() {}
 
   public PetType(String type) {
     this.type = type;

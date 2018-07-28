@@ -43,7 +43,7 @@ public class PetController {
                 petServices.updatePet(pet) : "Not authorized";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public String deletePet(@RequestHeader String username, @RequestHeader String password,
                             @PathVariable String id) {
         return authenticationServices.authenticate(username,password,"ADMIN") ?

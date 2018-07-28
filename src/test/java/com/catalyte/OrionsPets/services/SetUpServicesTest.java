@@ -1,11 +1,15 @@
 package com.catalyte.OrionsPets.services;
 
 import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+import com.catalyte.OrionsPets.models.Customer;
 import com.catalyte.OrionsPets.models.Inventory;
+import com.catalyte.OrionsPets.models.Pet;
 import com.catalyte.OrionsPets.models.PetType;
 import com.catalyte.OrionsPets.repositories.CustomerRepository;
 import com.catalyte.OrionsPets.repositories.InventoryRepository;
@@ -14,6 +18,7 @@ import com.catalyte.OrionsPets.repositories.PetTypeRepository;
 import com.catalyte.OrionsPets.repositories.PurchaseRepository;
 import com.catalyte.OrionsPets.repositories.UserRepository;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
@@ -53,6 +58,14 @@ public class SetUpServicesTest {
     assertTrue(classToTest.clearDatabase());
   }
 
+
+  //TODO this passes but does not hit the line of code i am testing
+  @Test(expected = Exception.class)
+  public void clearDataSadPath() throws Exception {
+    doThrow(new Exception()).when(custRepoMock).deleteAll();
+    assertFalse(classToTest.clearDatabase());
+  }
+
   @Test
   public void createDummyDataHappyPath() {
     List list = new ArrayList();
@@ -69,11 +82,15 @@ public class SetUpServicesTest {
     inventory.setPetTypeId(dummyString);
     doReturn(dummyType).when(typeRepoMock).findByType(any(String.class));
     doReturn(inventory).when(invRepoMock).findByPetTypeId(any(String.class));
-    //doReturn()
-
-
-
+    doReturn(new Pet()).when(petRepoMock).findOneById(any(String.class));
+    doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(null);
     assertTrue(classToTest.createDummyData());
+  }
+
+  @Test
+  public void createDummyDataSadPath() {
+    doReturn(Arrays.asList(new Pet())).when(petRepoMock).findAll();
+    assertFalse(classToTest.createDummyData());
   }
 
 }

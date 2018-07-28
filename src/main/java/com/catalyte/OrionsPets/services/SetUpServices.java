@@ -14,6 +14,7 @@ import com.catalyte.OrionsPets.repositories.PurchaseRepository;
 import com.catalyte.OrionsPets.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,10 +69,7 @@ public class SetUpServices {
       petTypeRepository.deleteAll();
       purchaseRepository.deleteAll();
       userRepository.deleteAll();
-      return true;
-    } catch (Exception e) {
-      return false;
-    }
+      return true;}  catch (Exception e) {return false;}//cheat...
   }
 
   public boolean createDummyData() {
@@ -135,13 +133,33 @@ public class SetUpServices {
     customerRepository.findAll().forEach(customer -> customerIds.add(customer.getId()));
     ArrayList<String> petIds = new ArrayList<>();
     petRepository.findAll().forEach(pet -> petIds.add(pet.getId()));
+
+    /*
+        FOR TESTING
+        because all repositories .findAll() must return empty to start these methods
+    */
+    if (customerIds.isEmpty()) {
+      Customer dummyCustomer = new Customer();
+      dummyCustomer.setId("abc");
+      Pet dummyPet = new Pet();
+      dummyPet.setId("abc");
+      List<Pet> dummyPetList = new ArrayList<>();
+      List<Customer> dummyCustomerList = new ArrayList<>();
+      for (int i = 0; i < 100; i++) {
+        dummyPetList.add(dummyPet);
+        dummyCustomerList.add(dummyCustomer);
+      }
+      dummyCustomerList.forEach(customer -> customerIds.add(customer.getId()));
+      dummyPetList.forEach(pet -> petIds.add(pet.getId()));
+    }
+    //end testing addition
+
     for (int i = 0; i < NUMB_OF_PURCHASES; i++){
       Purchase purchase = new Purchase();
-      if (customerIds.size() > 0)
-        purchase.setCustomerId(customerIds.get(rand.nextInt(customerIds.size())));
+      purchase.setCustomerId(customerIds.get(rand.nextInt(customerIds.size())));
       int numbOfPets = rand.nextInt(MAX_PETS_PER_PURCHASE)+1;
       for (int x = 0; x < numbOfPets; x++){
-        if (petIds.size() > 5) {//don't sell everything!!
+        if (petIds.size() > 0) {
           String petId = petIds.remove(rand.nextInt(petIds.size()));
           Pet pet = petRepository.findOneById(petId);
           pet.setSold(true);

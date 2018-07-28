@@ -69,6 +69,20 @@ public class PurchaseServicesTest {
     }
 
     @Test
+    public void createPurchaseSadPaths() {
+        String[] petIds = new String[1];
+        petIds[0] = "";
+        Pet pet = new Pet();
+        pet.setSold(true);
+        doReturn(pet).when(petRepoMock).findOneById("");
+        assertEquals("Bad customerId",classToTest.createPurchase("",petIds));
+        doReturn(true).when(custRepoMock).existsById("");
+        assertEquals(" is a bad petId",classToTest.createPurchase("",petIds));
+        doReturn(true).when(petRepoMock).existsById("");
+        assertEquals("Pet with  is already sold",classToTest.createPurchase("",petIds));
+    }
+
+    @Test
     public void returnPetHappyPath(){
         String dummyId = "DUMMY_ID";
         Purchase purchase =  new Purchase();
@@ -84,7 +98,17 @@ public class PurchaseServicesTest {
 
     }
 
-    @Test public void test3(){
+    @Test
+    public void returnPetSadPaths() {
+        assertEquals("bad purchaseId",classToTest.returnPet("",""));
+
+        doReturn(true).when(purcRepoMock).existsById("");
+        assertEquals("bad petId",classToTest.returnPet("",""));
+    }
+
+
+    @Test
+    public void deletePurchaseHappyPath(){
         String dummyId = "DUMMY_ID";
         Purchase purchase = new Purchase();
         purchase.setId(dummyId);
@@ -96,5 +120,11 @@ public class PurchaseServicesTest {
         String result = classToTest.deletePurchase(dummyId);
         assertEquals("Purchase deleted", result);
     }
+
+    @Test
+    public void deletePurchaseSadPAth(){
+        assertEquals("Purchase does not exist", classToTest.deletePurchase(""));
+    }
+
 
 }

@@ -77,9 +77,8 @@ public class PurchaseServices {
       pet.setSold(false);
       petRepository.save(pet);
       purchaseRepository.save(purchase);
-      return "Pet returned";
     }
-    return "error";
+    return result ? "Pet returned" : "error";
   }
 
   public String deletePurchase(String purchaseId) {

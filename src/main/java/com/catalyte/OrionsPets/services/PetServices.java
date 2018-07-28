@@ -35,10 +35,8 @@ public class PetServices {
     List<Pet> list;
     switch (type) {
       case "type":
-        if (petTypeRepository.existsByType(value))
-          list = petRepository.findByPetTypeId(petTypeRepository.findByType(value).getId());
-        else
-          list = new ArrayList<>();
+        list = petTypeRepository.existsByType(value) ? petRepository.findByPetTypeId(petTypeRepository.findByType(value).getId()) :
+                new ArrayList<>();
         break;
       case "name":
         list = petRepository.findByName(value);
@@ -100,8 +98,7 @@ public class PetServices {
     if (petRepository.existsById(petId)){
       Pet pet = petRepository.findOneById(petId);
       if (!pet.isSold()) {
-        Inventory inventory = inventoryRepository
-            .findByPetTypeId(pet.getPetTypeId());
+        Inventory inventory = inventoryRepository.findByPetTypeId(pet.getPetTypeId());
         InventoryDTO invDto = new InventoryDTO(inventory);
         invDto.addInventory(-1);
         inventoryRepository.save(inventory);

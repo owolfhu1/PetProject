@@ -64,6 +64,14 @@ public class PurchaseControllerTest {
     String result = classToTest.createPurchase(USER,PASS,dummyId,items);
     assertEquals(dummyId,result);
   }
+  @Test
+  public void createPurchaseSadPath() {
+    String[] items = new String[1];
+    items[0] = dummyId;
+    doReturn(dummyId).when(purchServMock).createPurchase(dummyId,items);
+    String result = classToTest.createPurchase(USER,"",dummyId,items);
+    assertEquals("Not authorized",result);
+  }
 
   @Test
   public void returnPetHappyPath() {

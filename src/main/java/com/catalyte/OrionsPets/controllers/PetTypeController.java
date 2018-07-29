@@ -34,13 +34,13 @@ public class PetTypeController {
 
      */
 
-    @ApiOperation("Navigate here to find all types")
+    @ApiOperation("Navigate here to find all types. Access level: none")
     @RequestMapping(value = "/findall", method = RequestMethod.GET)
     public List<PetType> findAll() {
         return this.petTypeServices.findAll();
     }
 
-    @ApiOperation("find by {category}=('type'/'id') + {searchTerm} in uri")
+    @ApiOperation("find by {category}=('type'/'id') + {searchTerm} in uri. Access level: none")
     @RequestMapping(value = "/find/{category}/{searchTerm}", method = RequestMethod.GET)
     public PetType searchTypes(@PathVariable String category, @PathVariable String searchTerm) throws DataNotFoundException {
         return this.petTypeServices.search(category,searchTerm);

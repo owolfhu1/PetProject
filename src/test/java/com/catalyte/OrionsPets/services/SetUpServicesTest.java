@@ -54,15 +54,12 @@ public class SetUpServicesTest {
 
   @Test
   public void clearDataHappyPath() {
-    assertTrue(classToTest.clearDatabase());
+    assertTrue(classToTest.clearDatabase(SetUpServices.SUPER_SECRET_PASSWORD));
   }
 
-
-  //TODO this passes but does not hit the line of code i am testing
-  @Test(expected = Exception.class)
-  public void clearDataSadPath() throws Exception {
-    doThrow(new Exception()).when(custRepoMock).deleteAll();
-    assertFalse(classToTest.clearDatabase());
+  @Test
+  public void clearDataSadPath() {
+    assertFalse(classToTest.clearDatabase(""));
   }
 
   @Test
@@ -83,13 +80,26 @@ public class SetUpServicesTest {
     doReturn(inventory).when(invRepoMock).findByPetType(any(String.class));
     doReturn(new Pet()).when(petRepoMock).findOneById(any(String.class));
     doReturn(new Inventory()).when(invRepoMock).findByPetType(null);
-    assertTrue(classToTest.createDummyData());
+    assertTrue(classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD) == 1);
   }
 
   @Test
   public void createDummyDataSadPath() {
     doReturn(Arrays.asList(new Pet())).when(petRepoMock).findAll();
-    assertFalse(classToTest.createDummyData());
+    assertTrue(classToTest.createDummyData("") == -1);
+    assertTrue(classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD) == -2);
+  }
+
+  @Test
+  public void createEmptyHappyPath() {
+    assertTrue(1 == classToTest.createEmptyData(SetUpServices.SUPER_SECRET_PASSWORD,"",""));
+  }
+
+  @Test
+  public void createEmptySadPath() {
+    doReturn(Arrays.asList(new Pet())).when(petRepoMock).findAll();
+    assertTrue(classToTest.createEmptyData("","","") == -1);
+    assertTrue(classToTest.createEmptyData(SetUpServices.SUPER_SECRET_PASSWORD,"","") == -2);
   }
 
 }

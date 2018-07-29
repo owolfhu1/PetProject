@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 
 import static org.junit.Assert.assertEquals;
@@ -27,17 +28,43 @@ public class SetUpControllerTest {
         initMocks(this);
     }
 
-
     @Test
-    public void clearHappyPath(){
-        assertEquals("Database cleared!",classToTest.clearDatabase());
+    public void clearHappyPath() {
+        doReturn(true).when(setUpServMock).clearDatabase("");
+        assertEquals("Database cleared!",classToTest.clearDatabase(""));
     }
 
     @Test
-    public void createDummyDataHappyPath() {
-        doReturn(true).when(setUpServMock).createDummyData();
-        assertEquals("Dummy data created",classToTest.createDummyData());
+    public void createHappyPath(){
+        doReturn(1).when(setUpServMock).createDummyData("");
+        assertEquals("Dummy data created", classToTest.createDummyData(""));
     }
+
+    @Test
+    public void createSadPaths() {
+        doReturn(-1).when(setUpServMock).createDummyData("");
+        doReturn(-2).when(setUpServMock).createDummyData(SetUpServices.SUPER_SECRET_PASSWORD);
+        assertEquals("Access denied",classToTest.createDummyData(""));
+        assertEquals("There is already data in the database, please clear it before proceeding."
+                ,classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD));
+    }
+
+    @Test
+    public void createEmptyHappyPath(){
+        doReturn(1).when(setUpServMock).createEmptyData("","","");
+        assertEquals("Database setup complete", classToTest.createEmptyData("","",""));
+    }
+
+    @Test
+    public void createEmptySadPath(){
+        doReturn(-1).when(setUpServMock).createEmptyData("","","");
+        doReturn(-2).when(setUpServMock).createEmptyData(SetUpServices.SUPER_SECRET_PASSWORD,"","");
+        assertEquals("Access denied",classToTest.createEmptyData("","",""));
+        assertEquals("There is already data in the database, please clear it before proceeding."
+                ,classToTest.createEmptyData(SetUpServices.SUPER_SECRET_PASSWORD,"",""));
+    }
+
+
 
 
 }

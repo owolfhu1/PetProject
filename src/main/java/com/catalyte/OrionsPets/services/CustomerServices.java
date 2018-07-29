@@ -44,6 +44,7 @@ public class CustomerServices {
 
   public boolean createCustomer(Customer customer) {
     if (validateCustomer(customer)) {
+      customer.setId(null);
       customerRepository.save(customer);
       return true;
     }

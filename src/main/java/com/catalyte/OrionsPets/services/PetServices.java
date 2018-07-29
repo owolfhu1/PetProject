@@ -67,6 +67,8 @@ public class PetServices {
   public String createPet(Pet pet) {
     String validation = validatePet(pet);
     if (validation.isEmpty()) {
+      pet.setId(null);
+      pet.setSold(false);
       Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
       InventoryDTO invDTO = new InventoryDTO(inventory);
       invDTO.addInventory(1);

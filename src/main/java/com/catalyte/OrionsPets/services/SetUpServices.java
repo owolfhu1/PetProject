@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SetUpServices {
+  public static final String SUPER_SECRET_PASSWORD = "password";
   private static final int MAX_PETS_PER_PURCHASE = 2;
   private static final int MAX_PET_AGE = 15;
   private static final int NUMB_OF_PETS = 20;
@@ -60,18 +61,39 @@ public class SetUpServices {
     this.userRepository = userRepository;
   }
 
-  public boolean clearDatabase() {
-    try {
+  public boolean clearDatabase(String password) {
+    if (password.equals(SUPER_SECRET_PASSWORD)) {
       customerRepository.deleteAll();
       inventoryRepository.deleteAll();
       petRepository.deleteAll();
       petTypeRepository.deleteAll();
       purchaseRepository.deleteAll();
       userRepository.deleteAll();
-      return true;}  catch (Exception e) {return false;}//cheat...
+      return true;
+    }  else
+      return false;
   }
 
-  public boolean createDummyData() {
+  public int createEmptyData(String password,String adminUsername, String adminPassword) {
+    if (!password.equals(SUPER_SECRET_PASSWORD)) {
+      return -1;
+    }
+    if (petTypeRepository.findAll().size() == 0 && inventoryRepository.findAll().size() == 0 &&
+            petRepository.findAll().size() == 0 && customerRepository.findAll().size() == 0 &&
+            purchaseRepository.findAll().size() == 0 && userRepository.findAll().size() == 0) {
+      User admin = new User(adminUsername,adminPassword);
+      UserDTO adminDTO = new UserDTO(admin);
+      adminDTO.addRole("USER");
+      adminDTO.addRole("ADMIN");
+      userRepository.save(admin);
+      return 1;
+    }
+    return -2;
+  }
+
+  public int createDummyData(String password) {
+    if (!password.equals(SUPER_SECRET_PASSWORD))
+      return -1;
     if (petTypeRepository.findAll().size() == 0 && inventoryRepository.findAll().size() == 0 &&
             petRepository.findAll().size() == 0 && customerRepository.findAll().size() == 0 &&
             purchaseRepository.findAll().size() == 0 && userRepository.findAll().size() == 0) {
@@ -80,9 +102,9 @@ public class SetUpServices {
       createDummyPets();
       createDummyCustomers();
       createDummyPurchases();
-      return true;
+      return 1;
     }
-    return false;
+    return -2;
   }
 
   private void createUsers() {

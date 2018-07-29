@@ -32,7 +32,7 @@ public class InventoryController {
 
    */
 
-  @ApiOperation("Navigate here to find all inventories")
+  @ApiOperation("Navigate here to find all inventories. Access level: none")
   @RequestMapping(value = "/findall", method = RequestMethod.GET)
   public List<Inventory> findAll() {
     return inventoryServices.findAll();
@@ -44,7 +44,8 @@ public class InventoryController {
     return inventoryServices.searchInventoriesByPetType(petType);
   }
 
-  @ApiOperation("Create a new inventory by {petType} + {price} in uri + username + password in header")
+  @ApiOperation("Create a new inventory by {petType} + {price} in uri" +
+          " + username + password in header. Access level: admin")
   @RequestMapping(value = "/create/{petType}/{price}", method = RequestMethod.POST)
   public String createInventory(@RequestHeader String username, @RequestHeader String password,
       @PathVariable String petType, @PathVariable double price) {
@@ -54,7 +55,7 @@ public class InventoryController {
             "Not authorized";
   }
 
-  @ApiOperation("Delete an inventory by {petType} in uri + username + password in header")
+  @ApiOperation("Delete an inventory by {petType} in uri + username + password in header. Access level: admin")
   @RequestMapping(value = "/delete/{petType}", method = RequestMethod.DELETE)
   public String deleteInventory(@RequestHeader String username, @RequestHeader String password,
       @PathVariable String petType) {

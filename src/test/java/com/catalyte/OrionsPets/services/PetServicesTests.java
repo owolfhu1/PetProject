@@ -43,7 +43,7 @@ public class PetServicesTests {
     doReturn(pets).when(petRepoMock).findByName("");
     doReturn(pets).when(petRepoMock).findByColor("");
     doReturn(pets).when(petRepoMock).findBySex("");
-    doReturn(pets).when(petRepoMock).findByPetTypeId("");
+    doReturn(pets).when(petRepoMock).findByPetType("");
     doReturn(pets).when(petRepoMock).findByAge(1);
     doReturn(pets).when(petRepoMock).findBySold(true);
     List<Pet> names = classToTest.searchPets("name", "");
@@ -76,9 +76,9 @@ public class PetServicesTests {
     Pet pet = new Pet("dog", "name", 1, "color", "male");
     PetType petType = new PetType("dog");
     petType.setId("DUMMY_ID_STRING_1234");
-    doReturn(true).when(typeRepoMock).existsByType(pet.getPetTypeId());
-    doReturn(petType).when(typeRepoMock).findByType(pet.getPetTypeId());
-    doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(petType.getId());
+    doReturn(true).when(typeRepoMock).existsByType(pet.getPetType());
+    doReturn(petType).when(typeRepoMock).findByType(pet.getPetType());
+    doReturn(new Inventory()).when(invRepoMock).findByPetType(petType.getType());
     String result = classToTest.createPet(pet);
     assertEquals("Pet created", result);
   }
@@ -88,9 +88,9 @@ public class PetServicesTests {
     Pet pet = new Pet("", "dd", -1, "blue", "male");
     PetType petType = new PetType("");
     petType.setId("");
-    doReturn(true).when(typeRepoMock).existsByType(pet.getPetTypeId());
-    doReturn(petType).when(typeRepoMock).findByType(pet.getPetTypeId());
-    doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(petType.getId());
+    doReturn(true).when(typeRepoMock).existsByType(pet.getPetType());
+    doReturn(petType).when(typeRepoMock).findByType(pet.getPetType());
+    doReturn(new Inventory()).when(invRepoMock).findByPetType(petType.getId());
     String result = classToTest.createPet(pet);
     assertNotEquals("Pet created", result);
   }
@@ -103,9 +103,9 @@ public class PetServicesTests {
     oldPet.setSold(true);
     PetType petType = new PetType("dog");
     petType.setId("abc");
-    doReturn(true).when(typeRepoMock).existsByType(pet.getPetTypeId());
-    doReturn(petType).when(typeRepoMock).findByType(pet.getPetTypeId());
-    doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(petType.getId());
+    doReturn(true).when(typeRepoMock).existsByType(pet.getPetType());
+    doReturn(petType).when(typeRepoMock).findByType(pet.getPetType());
+    doReturn(new Inventory()).when(invRepoMock).findByPetType(petType.getType());
     doReturn(true).when(petRepoMock).existsById(pet.getId());
     doReturn(oldPet).when(petRepoMock).findOneById(pet.getId());
     String result = classToTest.updatePet(pet);
@@ -120,7 +120,7 @@ public class PetServicesTests {
     assertEquals("Could not find pet to update. (bad petId)", classToTest.updatePet(pet));
     doReturn(true).when(petRepoMock).existsById(pet.getId());
     assertEquals("Bad pet type", classToTest.updatePet(pet));
-    doReturn(true).when(typeRepoMock).existsByType(pet.getPetTypeId());
+    doReturn(true).when(typeRepoMock).existsByType(pet.getPetType());
     assertEquals("Pet name required", classToTest.updatePet(pet));
     pet.setName("thisIsALongStringForTestingAStringThatIsTooLong");
     assertEquals("Pet name too long, max 15 char.", classToTest.updatePet(pet));
@@ -141,7 +141,7 @@ public class PetServicesTests {
     pet.setSold(false);
     doReturn(true).when(petRepoMock).existsById(pet.getId());
     doReturn(pet).when(petRepoMock).findOneById(pet.getId());
-    doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(null);
+    doReturn(new Inventory()).when(invRepoMock).findByPetType(null);
     String result = classToTest.deletePet(pet.getId());
     assertEquals("Pet deleted", result);
   }

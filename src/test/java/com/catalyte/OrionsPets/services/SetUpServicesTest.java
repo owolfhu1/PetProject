@@ -7,7 +7,6 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-import com.catalyte.OrionsPets.models.Customer;
 import com.catalyte.OrionsPets.models.Inventory;
 import com.catalyte.OrionsPets.models.Pet;
 import com.catalyte.OrionsPets.models.PetType;
@@ -79,11 +78,11 @@ public class SetUpServicesTest {
     PetType dummyType = new PetType(dummyString);
     dummyType.setId(dummyString);
     Inventory inventory = new Inventory();
-    inventory.setPetTypeId(dummyString);
+    inventory.setPetType(dummyString);
     doReturn(dummyType).when(typeRepoMock).findByType(any(String.class));
-    doReturn(inventory).when(invRepoMock).findByPetTypeId(any(String.class));
+    doReturn(inventory).when(invRepoMock).findByPetType(any(String.class));
     doReturn(new Pet()).when(petRepoMock).findOneById(any(String.class));
-    doReturn(new Inventory()).when(invRepoMock).findByPetTypeId(null);
+    doReturn(new Inventory()).when(invRepoMock).findByPetType(null);
     assertTrue(classToTest.createDummyData());
   }
 

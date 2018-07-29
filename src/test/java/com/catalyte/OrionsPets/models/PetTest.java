@@ -16,8 +16,8 @@ public class PetTest {
     public void getterAndSettersHappyPaths() {
         classToTest.setId("");
         assertEquals("",classToTest.getId());
-        classToTest.setPetTypeId("");
-        assertEquals("",classToTest.getPetTypeId());
+        classToTest.setPetType("");
+        assertEquals("",classToTest.getPetType());
         classToTest.setSex("");
         assertEquals("",classToTest.getSex());
         classToTest.setName("");

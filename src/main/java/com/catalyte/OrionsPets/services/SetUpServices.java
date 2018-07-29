@@ -13,7 +13,6 @@ import com.catalyte.OrionsPets.repositories.PurchaseRepository;
 
 import com.catalyte.OrionsPets.repositories.UserRepository;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -101,24 +100,20 @@ public class SetUpServices {
   private void createDummyPetTypesAndInventories() {
     for (String type : petTypes) {
       petTypeRepository.save(new PetType(type));
-      String petTypeId = petTypeRepository.findByType(type).getId();
       Inventory inventory = new Inventory();
-      inventory.setPetTypeId(petTypeId);
+      inventory.setPetType(type);
       inventory.setPrice((rand.nextInt(400)+1)*.25);
       inventoryRepository.save(inventory);
     }
   }
 
   private void createDummyPets() {
-    String[] petTypeIds = new String[petTypes.length];
-    for (int i = 0; i < petTypes.length; i++)
-      petTypeIds[i] = petTypeRepository.findByType(petTypes[i]).getId();
     for (int i = 0; i < NUMB_OF_PETS; i++) {
-      Inventory inventory = inventoryRepository.findByPetTypeId(petTypeIds[rand.nextInt(petTypeIds.length)]);
+      Inventory inventory = inventoryRepository.findByPetType(petTypes[rand.nextInt(petTypes.length)]);
       InventoryDTO invDTO = new InventoryDTO(inventory);
       invDTO.addInventory(1);
       inventoryRepository.save(inventory);
-      Pet pet = new Pet(inventory.getPetTypeId(), randomName(),rand.nextInt(MAX_PET_AGE)+1, randomColor(), rand.nextBoolean() ? "male":"female");
+      Pet pet = new Pet(inventory.getPetType(), randomName(),rand.nextInt(MAX_PET_AGE)+1, randomColor(), rand.nextBoolean() ? "male":"female");
       petRepository.save(pet);
     }
   }
@@ -163,7 +158,7 @@ public class SetUpServices {
           String petId = petIds.remove(rand.nextInt(petIds.size()));
           Pet pet = petRepository.findOneById(petId);
           pet.setSold(true);
-          Inventory inventory = inventoryRepository.findByPetTypeId(pet.getPetTypeId());
+          Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
           InventoryDTO invDTO = new InventoryDTO(inventory);
           invDTO.addInventory(-1);
           PurchaseDTO purchaseDTO = new PurchaseDTO(purchase);

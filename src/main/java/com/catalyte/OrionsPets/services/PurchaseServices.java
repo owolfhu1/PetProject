@@ -56,7 +56,7 @@ public class PurchaseServices {
     for (String id : petIds) {
       Pet pet = petRepository.findOneById(id);
       pet.setSold(true);
-      Inventory inventory = inventoryRepository.findByPetTypeId(pet.getPetTypeId());
+      Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
       InventoryDTO invDto = new InventoryDTO(inventory);
       invDto.addInventory(-1);
       PurchaseItem item = new PurchaseItem(pet.getId(),inventory.getPrice());

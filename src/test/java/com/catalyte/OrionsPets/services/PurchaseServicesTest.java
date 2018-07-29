@@ -3,7 +3,6 @@ package com.catalyte.OrionsPets.services;
 import com.catalyte.OrionsPets.DTOs.PurchaseDTO;
 import com.catalyte.OrionsPets.models.Inventory;
 import com.catalyte.OrionsPets.models.Pet;
-import com.catalyte.OrionsPets.models.PetType;
 import com.catalyte.OrionsPets.models.Purchase;
 import com.catalyte.OrionsPets.models.PurchaseItem;
 import com.catalyte.OrionsPets.repositories.*;
@@ -64,13 +63,13 @@ public class PurchaseServicesTest {
         String[] petIds = new String[1];
         petIds[0] = dummyId;
         Pet pet = new Pet();
-        pet.setPetTypeId(dummyId);
+        pet.setPetType(dummyId);
         Inventory inventory = new Inventory();
-        inventory.setPetTypeId(dummyId);
+        inventory.setPetType(dummyId);
         doReturn(true).when(custRepoMock).existsById(dummyId);
         doReturn(true).when(petRepoMock).existsById(dummyId);
         doReturn(pet).when(petRepoMock).findOneById(dummyId);
-        doReturn(inventory).when(invRepoMock).findByPetTypeId(dummyId);
+        doReturn(inventory).when(invRepoMock).findByPetType(dummyId);
         String result = classToTest.createPurchase(dummyId,petIds);
         assertEquals("Purchase created",result);
     }

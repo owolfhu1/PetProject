@@ -18,8 +18,8 @@ public class InventoryTest {
         assertEquals("",classToTest.getId());
         classToTest.setCount(1);
         assertEquals(1,classToTest.getCount());
-        classToTest.setPetTypeId("");
-        assertEquals("",classToTest.getPetTypeId());
+        classToTest.setPetType("");
+        assertEquals("",classToTest.getPetType());
         classToTest.setPrice(1);
         assertTrue(1 == classToTest.getPrice());
     }

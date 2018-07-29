@@ -8,7 +8,7 @@ public class Pet {
 
   @Id
   private String id;
-  private String petTypeId;
+  private String petType;
   private String name;
   private String color;
   private int age;
@@ -18,8 +18,8 @@ public class Pet {
   public Pet() {
   }
 
-  public Pet(String petTypeId, String name, int age, String color, String sex) {
-    this.petTypeId = petTypeId;
+  public Pet(String petType, String name, int age, String color, String sex) {
+    this.petType = petType;
     this.name = name;
     this.age = age;
     this.color = color;
@@ -58,12 +58,12 @@ public class Pet {
     this.color = color;
   }
 
-  public String getPetTypeId() {
-    return petTypeId;
+  public String getPetType() {
+    return petType;
   }
 
-  public void setPetTypeId(String petTypeId) {
-    this.petTypeId = petTypeId;
+  public void setPetType(String petType) {
+    this.petType = petType;
   }
 
   public int getAge() {

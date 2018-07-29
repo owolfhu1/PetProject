@@ -48,7 +48,7 @@ public class InventoryServiceTests {
     Inventory inventory = new Inventory();
     doReturn(true).when(typeRepoMock).existsByType("");
     doReturn(petType).when(typeRepoMock).findByType("");
-    doReturn(inventory).when(invRepoMock).findByPetTypeId("");
+    doReturn(inventory).when(invRepoMock).findByPetType("");
     assertEquals(inventory,classToTest.searchInventoriesByPetType(""));
 
   }

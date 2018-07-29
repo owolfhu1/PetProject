@@ -9,7 +9,7 @@ public class Inventory {
   @Id
   private String id;
   private int count = 0;
-  private String petTypeId;
+  private String petType;
   private double price;
 
   public String getId() {
@@ -28,12 +28,12 @@ public class Inventory {
     this.count = count;
   }
 
-  public String getPetTypeId() {
-    return petTypeId;
+  public String getPetType() {
+    return petType;
   }
 
-  public void setPetTypeId(String petTypeId) {
-    this.petTypeId = petTypeId;
+  public void setPetType(String petType) {
+    this.petType = petType;
   }
 
   public double getPrice() {

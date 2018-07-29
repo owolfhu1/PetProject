@@ -22,11 +22,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SetUpServices {
-  private static final int MAX_PETS_PER_PURCHASE = 3;
-  private static final int MAX_PET_AGE = 20;
-  private static final int NUMB_OF_PETS = 50;
-  private static final int NUMB_OF_CUSTOMERS = 20;
-  private static final int NUMB_OF_PURCHASES = 20;
+  private static final int MAX_PETS_PER_PURCHASE = 2;
+  private static final int MAX_PET_AGE = 15;
+  private static final int NUMB_OF_PETS = 20;
+  private static final int NUMB_OF_CUSTOMERS = 10;
+  private static final int NUMB_OF_PURCHASES = 10;
   private static String[] colors = {"red", "yellow", "blue", "green", "brown",
           "white", "black", "gray", "striped", "orange", "purple", "pink"};
   private static String[] begin = {"Kr", "Ca", "Ra", "Mrok", "Cru",

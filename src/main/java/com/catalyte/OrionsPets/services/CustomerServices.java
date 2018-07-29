@@ -50,9 +50,8 @@ public class CustomerServices {
     return false;
   }
 
-  public boolean updateCustomer(Customer customer, String customerId) {
-    if (validateCustomer(customer) && customerRepository.existsById(customerId)) {
-      customer.setId(customerId);
+  public boolean updateCustomer(Customer customer) {
+    if (validateCustomer(customer) && customerRepository.existsById(customer.getId())) {
       customerRepository.save(customer);
       return true;
     }

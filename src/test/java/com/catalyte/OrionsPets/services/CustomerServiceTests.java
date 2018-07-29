@@ -80,7 +80,7 @@ public class CustomerServiceTests {
     Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc drive");
     customer.setId("test");
     doReturn(true).when(custRepoMock).existsById("test");
-    boolean result = classToTest.updateCustomer(customer,"test");
+    boolean result = classToTest.updateCustomer(customer);
     assertTrue(result);
   }
 
@@ -91,9 +91,9 @@ public class CustomerServiceTests {
     Customer customer3 = new Customer("Orion","Wolf","() 111-1111","111 sddr drtg");
     customer.setId("test");
     doReturn(true).when(custRepoMock).existsById("test");
-    boolean result1 = classToTest.updateCustomer(customer,"test");
-    boolean result2 = classToTest.updateCustomer(customer2,"test");
-    boolean result3 = classToTest.updateCustomer(customer3,"test");
+    boolean result1 = classToTest.updateCustomer(customer);
+    boolean result2 = classToTest.updateCustomer(customer2);
+    boolean result3 = classToTest.updateCustomer(customer3);
     assertFalse(result1);
     assertFalse(result2);
     assertFalse(result3);

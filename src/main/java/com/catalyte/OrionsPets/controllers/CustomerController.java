@@ -51,12 +51,12 @@ public class CustomerController {
             "Access denied";
   }
 
-  @ApiOperation("Update a customer: req username + password in header + customerId in uri + customer to save in body.")
-  @RequestMapping(value = "/update/{customerId}", method = RequestMethod.PUT)
+  @ApiOperation("Update a customer: req username + password in header + customer to save in body.")
+  @RequestMapping(value = "/update", method = RequestMethod.PUT)
   public String updateCustomer(@RequestHeader String username, @RequestHeader String password,
-      @RequestBody Customer customer, @PathVariable("customerId") String customerId) {
+      @RequestBody Customer customer) {
     return authenticationServices.authenticate(username,password,"ADMIN") ?
-            (customerServices.updateCustomer(customer,customerId) ? "Customer updated" : "Invalid data provided") :
+            (customerServices.updateCustomer(customer) ? "Customer updated" : "Invalid data provided") :
             "Access denied";
   }
 

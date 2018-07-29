@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-public class CustomerControllertests {
+public class CustomerControllerTests {
 
   @InjectMocks
   CustomerController classToTest;
@@ -72,8 +72,8 @@ public class CustomerControllertests {
   @Test
   public void updateCustomerHappyPath() {
     Customer customer = new Customer();
-    doReturn(true).when(custServMock).updateCustomer(customer,"id");
-    String result = classToTest.updateCustomer(USER,PASS,customer,"id");
+    doReturn(true).when(custServMock).updateCustomer(customer);
+    String result = classToTest.updateCustomer(USER,PASS,customer);
     assertEquals("Customer updated",result);
   }
 

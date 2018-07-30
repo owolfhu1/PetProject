@@ -25,7 +25,7 @@ public class SetUpController {
    * @return String message telling result of action
    */
   @ApiOperation("Navigate here to clear the database + enter password in header. Access: dev password")
-  @RequestMapping(value = "clear", method = RequestMethod.GET)
+  @RequestMapping(value = "/clear", method = RequestMethod.GET)
   public String clearDatabase(@RequestHeader String password) {
     return setUpServices.clearDatabase(password) ? "Database cleared!" : "Access denied";
   }
@@ -41,7 +41,7 @@ public class SetUpController {
   @ApiOperation("Navigate here to create a random database(database must be cleared first) " +
           "+ enter password + pets(MAX = 200) + customers(MAX = 100) + purchases(MAX = half of {pets})" +
           " in header. Access: dev password")
-  @RequestMapping(value = "create-dummy", method = RequestMethod.GET)
+  @RequestMapping(value = "/create-dummy", method = RequestMethod.GET)
   public String createDummyData(@RequestHeader String password, @RequestHeader int pets,
                                 @RequestHeader int customers, @RequestHeader int purchases) {
     return setUpServices.createDummyData(password,pets,customers,purchases) == 1 ? "Dummy data created" :
@@ -58,7 +58,7 @@ public class SetUpController {
    */
   @ApiOperation("Navigate here to create a blank database an admin + " +
           "enter password + adminUsername + adminPassword in header. Access: dev password")
-  @RequestMapping(value = "create-empty", method = RequestMethod.GET)
+  @RequestMapping(value = "/create-empty", method = RequestMethod.GET)
   public String createEmptyData(@RequestHeader String password
           , @RequestHeader String adminUsername,@RequestHeader String adminPassword) {
     return setUpServices.createEmptyData(password,adminUsername,adminPassword) == 1 ? "Database setup complete" :

@@ -5,12 +5,22 @@
     + Username: orion<br/>
     + Password: pass12<br/>
     + Authentication Database: heroku_m46f7v7k<br/>
- <br/>
-<strong>To setup database:</strong> (clear then create to start fresh)<br/>
+<br/>
+<strong>To set up the database:</strong><br/>
+    * password in header = "password", for all SetupController<br/>
     + clear: localhost:8080/setup/clear<br/>
-    + create: localhost:8080/setup/create<br/><br/>
-<strong>View all other paths at:</strong> localhost:8080/swagger-ui.html#/<br/><br/>
+    + create dummy data: localhost:8080/setup/create-dummy<br/>
+    ---- In header: pets(int, MAX = 200)<br/>
+    ---- In header: customers(int, MAX = 100)<br/>
+    ---- In header: purchases(int, MAX = pets/2)<br/>
+    + create empty database with one admin: localhost:8080/setup/create-empty<br/>
+    ---- In header: adminUsername : String<br/>
+    ---- In header: adminPassword : String<br/>
+<br/>
+<strong>View all other paths at:</strong> localhost:8080/swagger-ui.html#/<br/>
+<br/>
 <strong>access POST/PUT/DELETE endpoints requires user/pass:</strong><br/>
     + add to header:<br/>
-    - username : admin<br/>
-    - password : password
+    ----(for dummy database) username : admin<br/>
+    ----(for dummy database) password : password
+    

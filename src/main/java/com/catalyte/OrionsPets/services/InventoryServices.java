@@ -27,16 +27,32 @@ public class InventoryServices {
     this.petRepository = petRepository;
   }
 
+  /**
+   * Finds all inventories
+   * @return List of Inventory
+   */
   public List<Inventory> findAll() {
     return inventoryRepository.findAll();
   }
 
+  /**
+   * Finds an inventory by petType
+   * @param petType petType to find
+   * @return an Inventory
+   * @throws DataNotFoundException if no inventory is found
+   */
   public Inventory searchInventoriesByPetType(String petType) throws DataNotFoundException {
     if (petTypeRepository.existsByType(petType)) {
       return inventoryRepository.findByPetType(petType);
     } else throw new DataNotFoundException();
   }
 
+  /**
+   * Creates an inventory
+   * @param petType petType to make inventory with
+   * @param price price to assign to inventory
+   * @return boolean tells if was successful
+   */
   public boolean createInventory(PetType petType, double price) {
     boolean result = false;
     if (!petTypeRepository.existsByType(petType.getType())) {
@@ -50,6 +66,11 @@ public class InventoryServices {
     return result;
   }
 
+  /**
+   * Deletes an inventory
+   * @param petType petType to find inventory t delete
+   * @return boolean tells if was successful
+   */
   public boolean deleteInventory(String petType) {
     boolean result = false;
     if (petTypeRepository.existsByType(petType)) {

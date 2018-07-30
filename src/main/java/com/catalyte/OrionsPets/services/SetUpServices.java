@@ -22,8 +22,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SetUpServices {
   public static final String SUPER_SECRET_PASSWORD = "password";
-  private static int MAX_PETS_PER_PURCHASE = 3;
-  private static int MAX_PET_AGE = 20;
+  private static final int MAX_PETS_PER_PURCHASE = 3;
+  private static final int MAX_PET_AGE = 20;
   private static int NUMB_OF_PETS = 20;
   private static int NUMB_OF_CUSTOMERS = 10;
   private static int NUMB_OF_PURCHASES = 10;

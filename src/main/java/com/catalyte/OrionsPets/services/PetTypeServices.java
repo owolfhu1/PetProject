@@ -13,30 +13,43 @@ import java.util.List;
 @Service
 public class PetTypeServices {
 
-    private PetTypeRepository petTypeRepository;
+  private PetTypeRepository petTypeRepository;
 
-    @Autowired
-    public PetTypeServices(PetTypeRepository petTypeRepository) {
-        this.petTypeRepository = petTypeRepository;
-    }
+  @Autowired
+  public PetTypeServices(PetTypeRepository petTypeRepository) {
+    this.petTypeRepository = petTypeRepository;
+  }
 
-    public List<PetType> findAll() {
-        return petTypeRepository.findAll();
-    }
+  /**
+   * finds all petTypes
+   *
+   * @return List of PetType
+   */
+  public List<PetType> findAll() {
+    return petTypeRepository.findAll();
+  }
 
-    public PetType search(String category, String searchTerm) throws DataNotFoundException {
-        switch (category) {
-            case "type" :
-                if (petTypeRepository.existsByType(searchTerm))
-                    return petTypeRepository.findByType(searchTerm);
-                throw new DataNotFoundException();
-            case "id" :
-                if (petTypeRepository.existsById(searchTerm))
-                    return petTypeRepository.findOneById(searchTerm);
-                throw new DataNotFoundException();
-            default:
-                throw new DataNotFoundException();
-        }
+  /**
+   * Search for specific petType
+   *
+   * @param category category to search in
+   * @param searchTerm term to search for
+   * @return a PetType
+   * @throws DataNotFoundException if petType isn't found
+   */
+  public PetType search(String category, String searchTerm) throws DataNotFoundException {
+    switch (category) {
+      case "type":
+        if (petTypeRepository.existsByType(searchTerm))
+          return petTypeRepository.findByType(searchTerm);
+        throw new DataNotFoundException();
+      case "id":
+        if (petTypeRepository.existsById(searchTerm))
+          return petTypeRepository.findOneById(searchTerm);
+        throw new DataNotFoundException();
+      default:
+        throw new DataNotFoundException();
     }
+  }
 
 }

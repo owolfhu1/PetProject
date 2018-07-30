@@ -10,6 +10,10 @@ public class UserDTO {
     this.user = user;
   }
 
+  /**
+   * Adds a role to user
+   * @param role role to add
+   */
   public void addRole(String role) {
     String[] newRoles = new String[user.getRoles().length + 1];
     System.arraycopy(user.getRoles(), 0, newRoles, 0, user.getRoles().length);
@@ -17,6 +21,11 @@ public class UserDTO {
     user.setRoles(newRoles);
   }
 
+  /**
+   * checks if role exists
+   * @param role role to check for
+   * @return
+   */
   public boolean hasRole(String role) {
     for(String string : user.getRoles())
       if (string.equals(role))

@@ -10,6 +10,10 @@ public class InventoryDTO {
     this.inventory = inventory;
   }
 
+  /**
+   * increments inventory count
+   * @param number number to increment
+   */
   public void addInventory(int number) {
     inventory.setCount(inventory.getCount() + number);
   }

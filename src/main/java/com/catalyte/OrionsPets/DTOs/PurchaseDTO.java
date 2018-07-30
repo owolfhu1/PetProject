@@ -11,6 +11,10 @@ public class PurchaseDTO {
     this.purchase = purchase;
   }
 
+  /**
+   * Adds a PurchaseItem to purchase
+   * @param item item to add
+   */
   public void addItem(PurchaseItem item) {
     PurchaseItem[] newItems = new PurchaseItem[purchase.getItems().length + 1];
     System.arraycopy(purchase.getItems(), 0, newItems, 0, purchase.getItems().length);
@@ -29,6 +33,11 @@ public class PurchaseDTO {
     return false;
   }
 
+  /**
+   * removes a pet from a purchase
+   * @param petId id of pet to remove
+   * @return boolean to tell if was successful
+   */
   public boolean removeItem(String petId) {
     if (hasItem(petId)) {
       PurchaseItem[] items = new PurchaseItem[purchase.getItems().length - 1];

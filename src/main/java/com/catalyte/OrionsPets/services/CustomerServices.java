@@ -17,24 +17,34 @@ public class CustomerServices {
     this.customerRepository = customerRepository;
   }
 
+  /**
+   * Finds all customers
+   * @return List of Customer
+   */
   public List<Customer> findAll() {
     return customerRepository.findAll();
   }
 
-  public List<Customer> searchCustomers(String type, String value) {
+  /**
+   * finds specific customers
+   * @param category category to search
+   * @param searchTerm term to search for
+   * @return List of Customer
+   */
+  public List<Customer> searchCustomers(String category, String searchTerm) {
     List<Customer> list;
-    switch (type) {
+    switch (category) {
       case "firstname" :
-        list = customerRepository.findByFirstname(value);
+        list = customerRepository.findByFirstname(searchTerm);
         break;
       case  "lastname" :
-        list = customerRepository.findByLastname(value);
+        list = customerRepository.findByLastname(searchTerm);
         break;
       case "phone" :
-        list = customerRepository.findByPhone(value);
+        list = customerRepository.findByPhone(searchTerm);
         break;
       case "address" :
-        list = customerRepository.findByAddress(value);
+        list = customerRepository.findByAddress(searchTerm);
         break;
       default:
         list = new ArrayList<>();
@@ -42,6 +52,11 @@ public class CustomerServices {
     return list;
   }
 
+  /**
+   * Creates a new customer
+   * @param customer customer to add
+   * @return boolean, tells if was successful
+   */
   public boolean createCustomer(Customer customer) {
     if (validateCustomer(customer)) {
       customer.setId(null);
@@ -51,6 +66,11 @@ public class CustomerServices {
     return false;
   }
 
+  /**
+   * Updates a customer
+   * @param customer customer to replace old customer
+   * @return boolean tells if was successful
+   */
   public boolean updateCustomer(Customer customer) {
     if (validateCustomer(customer) && customerRepository.existsById(customer.getId())) {
       customerRepository.save(customer);
@@ -59,6 +79,11 @@ public class CustomerServices {
     return false;
   }
 
+  /**
+   * Deletes a customer
+   * @param customerId if of customer to delete
+   * @return
+   */
   public boolean deleteCustomer(String customerId) {
     if (customerRepository.existsById(customerId)) {
       customerRepository.deleteById(customerId);

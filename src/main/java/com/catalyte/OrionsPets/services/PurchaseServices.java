@@ -32,15 +32,29 @@ public class PurchaseServices {
     this.customerRepository = customerRepository;
   }
 
-
+  /**
+   * Finds all purchases
+   * @return List of Purchase
+   */
   public List<Purchase> findAll() {
     return purchaseRepository.findAll();
   }
 
+  /**
+   * Search for purchases by customerId
+   * @param customerId customerId to search for
+   * @return List of Purchase
+   */
   public List<Purchase> searchPurchases(String customerId) {
     return purchaseRepository.findByCustomerId(customerId);
   }
 
+  /**
+   * Createsa purchase
+   * @param customerId customer to make purchase
+   * @param petIds array of pet ids to purchase
+   * @return String message telling result of action
+   */
   public String createPurchase(String customerId, String[] petIds) {
     if (!customerRepository.existsById(customerId))
       return "Bad customerId";
@@ -68,6 +82,12 @@ public class PurchaseServices {
     return "Purchase created";
   }
 
+  /**
+   * Returns a pet to the store, removes from purchase
+   * @param purchaseId purchase to update
+   * @param petId pet id to return
+   * @return String message telling result of action
+   */
   public String returnPet(String purchaseId, String petId) {
     if (!purchaseRepository.existsById(purchaseId))
       return "bad purchaseId";
@@ -85,6 +105,11 @@ public class PurchaseServices {
     return result ? "Pet returned" : "error";
   }
 
+  /**
+   * deletes a purchase
+   * @param purchaseId id of purchase to delete
+   * @return String message telling result of action
+   */
   public String deletePurchase(String purchaseId) {
     if (!purchaseRepository.existsById(purchaseId))
       return "Purchase does not exist";

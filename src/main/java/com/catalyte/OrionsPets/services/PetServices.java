@@ -30,29 +30,34 @@ public class PetServices {
     this.inventoryRepository = inventoryRepository;
   }
 
-
-  public List<Pet> searchPets(String type, String value) {
+  /**
+   * Search for specific pet
+   * @param category category to search in
+   * @param searchTerm term to search for
+   * @return List of Pet
+   */
+  public List<Pet> searchPets(String category, String searchTerm) {
     List<Pet> list;
-    switch (type) {
+    switch (category) {
       case "type":
-        list = petRepository.findByPetType(type);
+        list = petRepository.findByPetType(category);
         break;
       case "name":
-        list = petRepository.findByName(value);
+        list = petRepository.findByName(searchTerm);
         break;
       case "color":
-        list = petRepository.findByColor(value);
+        list = petRepository.findByColor(searchTerm);
         break;
       case "sex":
-        list = petRepository.findBySex(value);
+        list = petRepository.findBySex(searchTerm);
         break;
       case "sold":
-        list = (value.equals("true") || value.equals("false")) ?
-            petRepository.findBySold(value.equals("true")) : new ArrayList<>();
+        list = (searchTerm.equals("true") || searchTerm.equals("false")) ?
+            petRepository.findBySold(searchTerm.equals("true")) : new ArrayList<>();
         break;
       case "age":
-        list = value.matches("^[0-9]+$") ?
-            petRepository.findByAge(Integer.parseInt(value)) : new ArrayList<>();
+        list = searchTerm.matches("^[0-9]+$") ?
+            petRepository.findByAge(Integer.parseInt(searchTerm)) : new ArrayList<>();
         break;
       default:
         list = new ArrayList<>();
@@ -60,10 +65,19 @@ public class PetServices {
     return list;
   }
 
+  /**
+   * Finds all pets
+   * @return List of Pet
+   */
   public List<Pet> findAll() {
     return petRepository.findAll();
   }
 
+  /**
+   * Creates a pet
+   * @param pet Pet to create
+   * @return String message telling result of action
+   */
   public String createPet(Pet pet) {
     String validation = validatePet(pet);
     if (validation.isEmpty()) {
@@ -78,6 +92,11 @@ public class PetServices {
     } else return validation;
   }
 
+  /**
+   * Updates a pet
+   * @param pet pet to replace old pet
+   * @return String message telling result of action
+   */
   public String updatePet(Pet pet) {
     if (!petRepository.existsById(pet.getId()))
       return "Could not find pet to update. (bad petId)";
@@ -95,6 +114,11 @@ public class PetServices {
     } else return validation;
   }
 
+  /**
+   * Deletes a pet
+   * @param petId id of pet to delete
+   * @return String message telling result of action
+   */
   public String deletePet(String petId) {
     if (petRepository.existsById(petId)){
       Pet pet = petRepository.findOneById(petId);
@@ -108,7 +132,6 @@ public class PetServices {
       return "Pet deleted";
     } else return "Pet to delete not found";
   }
-
 
   private String validatePet(Pet pet) {
     if (!petTypeRepository.existsByType(pet.getPetType()))

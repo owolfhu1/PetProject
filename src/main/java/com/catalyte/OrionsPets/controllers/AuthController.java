@@ -25,6 +25,15 @@ public class AuthController {
         this.authServices = authServices;
     }
 
+    /**
+     * Adds a new user
+     * @param username login username
+     * @param password login password
+     * @param newUsername new user username
+     * @param newPassword new user password
+     * @param role role of new user
+     * @return String message telling result of action
+     */
     @ApiOperation("Add a user: username + password + newUsername + newPassword + role in header. Access level: ADMIN")
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String addUser(@RequestHeader String username, @RequestHeader String password
@@ -34,6 +43,13 @@ public class AuthController {
                 authServices.addUser(newUsername,newPassword,role) : "Access denied";
     }
 
+  /**
+   * Deletes a user
+   * @param username login username
+   * @param password login password
+   * @param usernameToDelete username to be deleted
+   * @return String message telling result of action
+   */
     @ApiOperation("delete a user: username + password + usernameToDelete in header. Access level: ADMIN")
     @RequestMapping(value = "delete", method = RequestMethod.DELETE)
     public String deleteUser(@RequestHeader String username, @RequestHeader String password
@@ -42,7 +58,11 @@ public class AuthController {
                 authServices.deleteUser(usernameToDelete) : "Access denied";
     }
 
-    @ApiOperation("Navigate here to find all users. Access level: none")
+  /**
+   * finds all users, hides passwords
+   * @return List of User
+   */
+  @ApiOperation("Navigate here to find all users. Access level: none")
     @RequestMapping(value = "find-all", method = RequestMethod.GET)
     public List<User> findAll() {
         return authServices.findAll();

@@ -147,7 +147,7 @@ public class SetUpServices {
 
   private void createDummyCustomers() {
     for (int i = 0; i < NUMB_OF_CUSTOMERS; i++)
-      customerRepository.save(new Customer(randomName(),randomName(),randomPhone(),randomAddress()));
+      customerRepository.save(new Customer(randomName(),randomName(),randomPhone(),randomAddress(),randomEmail()));
   }
 
   private void createDummyPurchases() {
@@ -228,6 +228,10 @@ public class SetUpServices {
     return begin[rand.nextInt(begin.length)] +
             middle[rand.nextInt(middle.length)] +
             end[rand.nextInt(end.length)];
+  }
+
+  private String randomEmail() {
+    return randomName()+"@"+randomName()+"."+(rand.nextBoolean() ? "com" : "net");
   }
 
 }

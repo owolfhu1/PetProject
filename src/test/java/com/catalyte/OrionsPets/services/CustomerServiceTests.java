@@ -57,14 +57,14 @@ public class CustomerServiceTests {
 
   @Test
   public void createCustomerHappyPath() {
-    Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc drive");
+    Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc drive","email@email.net");
     boolean result = classToTest.createCustomer(customer);
     assertTrue(result);
   }
 
   @Test
   public void createCustomerSadPath() {
-    Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc");
+    Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc","email@email.net");
     boolean result = classToTest.createCustomer(customer);
     assertFalse(result);
   }
@@ -77,7 +77,7 @@ public class CustomerServiceTests {
 
   @Test
   public void updateCustomerHappyPath() {
-    Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc drive");
+    Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc drive","email@email.net");
     customer.setId("test");
     doReturn(true).when(custRepoMock).existsById("test");
     boolean result = classToTest.updateCustomer(customer);
@@ -86,17 +86,20 @@ public class CustomerServiceTests {
 
   @Test
   public void updateCustomerSadPath() {
-    Customer customer = new Customer("Orion","","(111) 111-1111","111 sddr drtg");
-    Customer customer2 = new Customer("","Wolf","(111) 111-1111","111 sddr drtg");
-    Customer customer3 = new Customer("Orion","Wolf","() 111-1111","111 sddr drtg");
+    Customer customer = new Customer("Orion","","(111) 111-1111","111 sddr drtg","email@email.net");
+    Customer customer2 = new Customer("","Wolf","(111) 111-1111","111 sddr drtg","email@email.net");
+    Customer customer3 = new Customer("Orion","Wolf","() 111-1111","111 sddr drtg","email@email.net");
+    Customer customer4 = new Customer("Orion","Wolf","(301) 111-1111","111 sddr drtg","emailemailnet");
     customer.setId("test");
     doReturn(true).when(custRepoMock).existsById("test");
     boolean result1 = classToTest.updateCustomer(customer);
     boolean result2 = classToTest.updateCustomer(customer2);
     boolean result3 = classToTest.updateCustomer(customer3);
+    boolean result4 = classToTest.updateCustomer(customer4);
     assertFalse(result1);
     assertFalse(result2);
     assertFalse(result3);
+    assertFalse(result4);
   }
 
   @Test

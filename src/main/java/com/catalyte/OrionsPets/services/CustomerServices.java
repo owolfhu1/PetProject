@@ -99,6 +99,8 @@ public class CustomerServices {
       return false;
     if (!customer.getPhone().matches("^[(][0-9]{3}[)] [0-9]{3}[-][0-9]{4}$"))
       return false;
+    if (!customer.getEmail().contains(".") || !customer.getEmail().contains("@"))
+      return false;
     return customer.getAddress().matches("^[0-9]{2,5} [a-z A-Z]{3,15} [a-z A-Z]{2,8}$");
   }
 

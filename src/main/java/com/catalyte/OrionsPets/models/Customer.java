@@ -12,14 +12,24 @@ public class Customer {
   private String lastname;
   private String phone;
   private String address;
+  private String email;
 
   public Customer(){}
 
-  public Customer(String firstname, String lastname, String phone, String address) {
+  public Customer(String firstname, String lastname, String phone, String address, String email) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.phone = phone;
     this.address = address;
+    this.email =  email;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public String getId() {

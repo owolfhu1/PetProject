@@ -23,6 +23,8 @@ public class CustomerTest {
         assertEquals("",classToTest.getLastname());
         classToTest.setPhone("");
         assertEquals("",classToTest.getPhone());
+        classToTest.setEmail("");
+        assertEquals("",classToTest.getEmail());
     }
 
 }

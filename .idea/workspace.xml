@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a2d4418-6b1b-442e-96b3-dd5ca7c8ce29" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/SetUpServicesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/DTOs/PurchaseDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/DTOs/PurchaseDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/PurchaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/controllers/PurchaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/repositories/PurchaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/repositories/PurchaseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/PurchaseServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/PurchaseServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/DTOs/PurchaseDTOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/DTOs/PurchaseDTOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/controllers/InventoryControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/controllers/InventoryControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/controllers/PurchaseControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/controllers/PurchaseControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PurchaseServicesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/catalyte/OrionsPets/services/PurchaseServicesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/DTOs/PurchaseDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/DTOs/PurchaseDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/controllers/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/controllers/CustomerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/controllers/PurchaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/controllers/PurchaseController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/repositories/PurchaseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/repositories/PurchaseRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/services/PurchaseServices.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/catalyte/OrionsPets/services/PurchaseServices.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/DTOs/PurchaseDTOTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/DTOs/PurchaseDTOTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/controllers/InventoryControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/controllers/InventoryControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/controllers/PurchaseControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/controllers/PurchaseControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/services/PurchaseServicesTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/catalyte/OrionsPets/services/PurchaseServicesTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -72,7 +51,7 @@
       <file leaf-file-name="SetUpServices.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="-9">
               <caret line="117" selection-start-line="117" selection-end-line="117" />
             </state>
           </provider>
@@ -729,14 +708,11 @@
       <workItem from="1532563574392" duration="3284000" />
       <workItem from="1532566934540" duration="7948000" />
       <workItem from="1532609229623" duration="21652000" />
-      <workItem from="1532695398119" duration="22426000" />
+      <workItem from="1532695398119" duration="22725000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SetUpServicesTest_createDummyDataHappyPath - 2018.07.27 at 15h 29m 15s.xml">
-      <configuration name="SetUpServicesTest.createDummyDataHappyPath" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="SetUpServicesTest_createDummyDataHappyPath - 2018.07.27 at 15h 31m 12s.xml">
       <configuration name="SetUpServicesTest.createDummyDataHappyPath" configurationId="JUnit" />
     </history-entry>
@@ -764,9 +740,12 @@
     <history-entry file="SetUpServicesTest_createDummyDataHappyPath - 2018.07.27 at 15h 51m 46s.xml">
       <configuration name="SetUpServicesTest.createDummyDataHappyPath" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="com_catalyte_OrionsPets_in_OrionsPets - 2018.07.27 at 15h 56m 39s.xml">
+      <configuration name="com.catalyte.OrionsPets in OrionsPets" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123995000" />
+    <option name="totallyTimeSpent" value="124294000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -799,7 +778,7 @@
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32570806" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32936078" />
-      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.32995737" />
+      <window_info anchor="right" id="Coverage" order="11" side_tool="true" visible="true" weight="0.32995737" />
       <window_info anchor="bottom" id="Spring" order="9" />
       <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.25381264" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2457356" />
@@ -1290,7 +1269,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/catalyte/OrionsPets/services/SetUpServices.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
+        <state relative-caret-position="-9">
           <caret line="117" selection-start-line="117" selection-end-line="117" />
         </state>
       </provider>

@@ -80,14 +80,14 @@ public class SetUpServicesTest {
     doReturn(inventory).when(invRepoMock).findByPetType(any(String.class));
     doReturn(new Pet()).when(petRepoMock).findOneById(any(String.class));
     doReturn(new Inventory()).when(invRepoMock).findByPetType(null);
-    assertTrue(classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD) == 1);
+    assertTrue(classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD,100,100,100) == 1);
   }
 
   @Test
   public void createDummyDataSadPath() {
     doReturn(Arrays.asList(new Pet())).when(petRepoMock).findAll();
-    assertTrue(classToTest.createDummyData("") == -1);
-    assertTrue(classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD) == -2);
+    assertTrue(classToTest.createDummyData("",100,100,100) == -1);
+    assertTrue(classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD,100,100,100) == -2);
   }
 
   @Test

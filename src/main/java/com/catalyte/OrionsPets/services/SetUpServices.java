@@ -22,11 +22,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class SetUpServices {
   public static final String SUPER_SECRET_PASSWORD = "password";
-  private static final int MAX_PETS_PER_PURCHASE = 2;
-  private static final int MAX_PET_AGE = 15;
-  private static final int NUMB_OF_PETS = 20;
-  private static final int NUMB_OF_CUSTOMERS = 10;
-  private static final int NUMB_OF_PURCHASES = 10;
+  private static int MAX_PETS_PER_PURCHASE = 3;
+  private static int MAX_PET_AGE = 20;
+  private static int NUMB_OF_PETS = 20;
+  private static int NUMB_OF_CUSTOMERS = 10;
+  private static int NUMB_OF_PURCHASES = 10;
   private static String[] colors = {"red", "yellow", "blue", "green", "brown",
           "white", "black", "gray", "striped", "orange", "purple", "pink"};
   private static String[] begin = {"Kr", "Ca", "Ra", "Mrok", "Cru",
@@ -91,12 +91,17 @@ public class SetUpServices {
     return -2;
   }
 
-  public int createDummyData(String password) {
+  public int createDummyData(String password, int pets, int customers, int purchases) {
     if (!password.equals(SUPER_SECRET_PASSWORD))
       return -1;
     if (petTypeRepository.findAll().size() == 0 && inventoryRepository.findAll().size() == 0 &&
             petRepository.findAll().size() == 0 && customerRepository.findAll().size() == 0 &&
             purchaseRepository.findAll().size() == 0 && userRepository.findAll().size() == 0) {
+
+
+      NUMB_OF_PETS = pets > 200 ? 200 : pets;
+      NUMB_OF_CUSTOMERS = customers > 100 ? 100 : customers;
+      NUMB_OF_PURCHASES = purchases > NUMB_OF_PETS/2 ? NUMB_OF_PETS/2 : purchases;
       createUsers();
       createDummyPetTypesAndInventories();
       createDummyPets();

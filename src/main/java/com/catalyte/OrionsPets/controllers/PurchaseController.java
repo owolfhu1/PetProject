@@ -31,18 +31,35 @@ public class PurchaseController {
     this.authServices = authServices;
   }
 
+  /**
+   * Find all purchases that exist
+   * @return List of Purchase
+   */
   @ApiOperation("Navigate here to find all purchases. Access level: none")
   @RequestMapping(value = "/findall", method = RequestMethod.GET)
   public List<Purchase> findAll() {
     return purchaseServices.findAll();
   }
 
+  /**
+   * Find purchases by a customer
+   * @param customerId customer to search for
+   * @return List of Purchase
+   */
   @ApiOperation("Search purchases by {customerId}. Access level: none")
   @RequestMapping(value = "/search/{customerId}", method = RequestMethod.GET)
   public List<Purchase> searchPurchasesByCustomerId(@PathVariable String customerId) {
     return purchaseServices.searchPurchases(customerId);
   }
 
+  /**
+   * Create a purchase + updates pet's sold value and inventories count
+   * @param username login username
+   * @param password login password
+   * @param customerId customer to make purchase
+   * @param petIds Array of ids fo pets to purchase
+   * @return String message telling result of action
+   */
   @ApiOperation("Create a purchase: req username + password in header +" +
           " {customerId} in uri + array of petIds to purchase in body. Access level: user+")
   @RequestMapping(value = "/create/{customerId}", method = RequestMethod.POST)
@@ -54,6 +71,14 @@ public class PurchaseController {
             purchaseServices.createPurchase(customerId,petIds) : "Not authorized";
   }
 
+  /**
+   * Return a pet: removes the pet from the purchase, updates pet's sold value and inventory's count
+   * @param username login username
+   * @param password login password
+   * @param purchaseId purchaseId to update
+   * @param petId petId to return
+   * @return String message telling result of action
+   */
   @ApiOperation("Return a pet: req username + password in header +" +
           " {purchaseId} and {petId} in uri. Access level: user+")
   @RequestMapping(value = "/return/{purchaseId}/{petId}", method = RequestMethod.PUT)
@@ -63,6 +88,13 @@ public class PurchaseController {
             purchaseServices.returnPet(purchaseId,petId) : "Not authorized";
   }
 
+  /**
+   * Deletes a purchase and all associated pets
+   * @param username login username
+   * @param password login password
+   * @param purchaseId purchaseId to delete
+   * @return String message telling result of action
+   */
   @ApiOperation("Delete a purchase: req username + password in header + purchaseId in uri. Access level: admin")
   @RequestMapping(value = "/delete/{purchaseId}", method = RequestMethod.DELETE)
   public String deletePurchase(@RequestHeader String username,

@@ -36,17 +36,17 @@ public class SetUpControllerTest {
 
     @Test
     public void createHappyPath(){
-        doReturn(1).when(setUpServMock).createDummyData("");
-        assertEquals("Dummy data created", classToTest.createDummyData(""));
+        doReturn(1).when(setUpServMock).createDummyData("",100,100,100);
+        assertEquals("Dummy data created", classToTest.createDummyData("",100,100,100));
     }
 
     @Test
     public void createSadPaths() {
-        doReturn(-1).when(setUpServMock).createDummyData("");
-        doReturn(-2).when(setUpServMock).createDummyData(SetUpServices.SUPER_SECRET_PASSWORD);
-        assertEquals("Access denied",classToTest.createDummyData(""));
+        doReturn(-1).when(setUpServMock).createDummyData("",100,100,100);
+        doReturn(-2).when(setUpServMock).createDummyData(SetUpServices.SUPER_SECRET_PASSWORD,100,100,100);
+        assertEquals("Access denied",classToTest.createDummyData("",100,100,100));
         assertEquals("There is already data in the database, please clear it before proceeding."
-                ,classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD));
+                ,classToTest.createDummyData(SetUpServices.SUPER_SECRET_PASSWORD,100,100,100));
     }
 
     @Test

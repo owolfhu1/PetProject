@@ -6,6 +6,11 @@
     + Password: pass12<br/>
     + Authentication Database: heroku_m46f7v7k<br/>
 <br/>
+<strong>To run API:</strong><br/>
+    + Clone project<br/>
+    + Import maven files<br/>
+    + Run main/java/com/catalyte/OrionsPets/AppRunner.java<br/>
+<br/>
 <strong>To set up the database:</strong><br/>
     * password in header = "password", for all SetupController<br/>
     + clear: localhost:8080/setup/clear<br/>
@@ -17,7 +22,8 @@
     ---- In header: adminUsername : String<br/>
     ---- In header: adminPassword : String<br/>
 <br/>
-<strong>View all other paths at:</strong> localhost:8080/swagger-ui.html#/<br/>
+<strong>View all other paths with swagger:</strong><br/>
+    + localhost:8080/swagger-ui.html#/<br/>
 <br/>
 <strong>access POST/PUT/DELETE endpoints requires user/pass:</strong><br/>
     + add to header:<br/>

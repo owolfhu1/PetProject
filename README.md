@@ -7,7 +7,7 @@
     + Authentication Database: heroku_m46f7v7k<br/>
 <br/>
 <strong>To run API:</strong><br/>
-    + Clone project<br/>
+    + Clone project: 'git clone https://github.com/owolfhu1/PetProject.git'<br/>
     + Import maven files<br/>
     + Run main/java/com/catalyte/OrionsPets/AppRunner.java<br/>
 <br/>

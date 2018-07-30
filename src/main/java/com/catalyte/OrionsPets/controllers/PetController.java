@@ -1,7 +1,7 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Pet;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.PetServices;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +17,10 @@ import java.util.List;
 public class PetController {
 
     private PetServices petServices;
-    private AuthenticationServices authServices;
+    private AuthServices authServices;
 
     @Autowired
-    public PetController(PetServices petServices, AuthenticationServices authServices) {
+    public PetController(PetServices petServices, AuthServices authServices) {
         this.petServices = petServices;
         this.authServices = authServices;
     }

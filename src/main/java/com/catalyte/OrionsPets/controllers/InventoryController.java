@@ -2,7 +2,7 @@ package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Inventory;
 import com.catalyte.OrionsPets.models.PetType;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.InventoryServices;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +15,13 @@ import java.util.List;
 public class InventoryController {
 
   private InventoryServices inventoryServices;
-  private AuthenticationServices authenticationServices;
+  private AuthServices authServices;
 
   @Autowired
   public InventoryController(InventoryServices inventoryServices,
-                             AuthenticationServices authenticationServices) {
+                             AuthServices authServices) {
     this.inventoryServices = inventoryServices;
-    this.authenticationServices = authenticationServices;
+    this.authServices = authServices;
   }
 
   /*                        ** NOTE **
@@ -68,7 +68,7 @@ public class InventoryController {
   public String createInventory(@RequestHeader String username, @RequestHeader String password,
       @PathVariable String petType, @PathVariable double price) {
     PetType pt = new PetType(petType);
-    return authenticationServices.authenticate(username,password,"ADMIN") ?
+    return authServices.authenticate(username,password,"ADMIN") ?
             (inventoryServices.createInventory(pt, price) ? "Inventory created" : "Inventory already exists.") :
             "Not authorized";
   }
@@ -84,7 +84,7 @@ public class InventoryController {
   @RequestMapping(value = "/delete/{petType}", method = RequestMethod.DELETE)
   public String deleteInventory(@RequestHeader String username, @RequestHeader String password,
       @PathVariable String petType) {
-    return authenticationServices.authenticate(username,password,"ADMIN") ?
+    return authServices.authenticate(username,password,"ADMIN") ?
             (inventoryServices.deleteInventory(petType) ? "Inventory deleted" : "Inventory not found.") : "Not authorized";
   }
 

@@ -6,7 +6,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import com.catalyte.OrionsPets.models.Customer;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.CustomerServices;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class CustomerControllerTests {
   CustomerServices custServMock;
 
   @Mock
-  AuthenticationServices authServMock;
+  AuthServices authServMock;
 
   private String USER = "user";
   private String PASS = "pass";

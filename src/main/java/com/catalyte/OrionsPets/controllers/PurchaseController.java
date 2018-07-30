@@ -1,7 +1,7 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Purchase;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.PurchaseServices;
 import java.util.List;
 
@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PurchaseController {
 
   private PurchaseServices purchaseServices;
-  private AuthenticationServices authServices;
+  private AuthServices authServices;
 
   @Autowired
   public PurchaseController(PurchaseServices purchaseServices,
-      AuthenticationServices authServices) {
+                            AuthServices authServices) {
     this.purchaseServices = purchaseServices;
     this.authServices = authServices;
   }

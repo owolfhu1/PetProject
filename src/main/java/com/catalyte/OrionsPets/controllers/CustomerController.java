@@ -1,7 +1,7 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Customer;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.CustomerServices;
 import java.util.List;
 
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerController {
 
   private CustomerServices customerServices;
-  private AuthenticationServices authServices;
+  private AuthServices authServices;
 
   @Autowired
   public CustomerController(CustomerServices customerServices,
-                            AuthenticationServices authServices) {
+                            AuthServices authServices) {
     this.customerServices = customerServices;
     this.authServices = authServices;
   }

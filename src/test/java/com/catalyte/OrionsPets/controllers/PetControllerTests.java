@@ -1,7 +1,7 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Pet;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.PetServices;
 import junit.framework.TestCase;
 import org.junit.Before;
@@ -25,7 +25,7 @@ public class PetControllerTests {
     PetServices petServMock;
 
     @Mock
-    private AuthenticationServices authServMock;
+    private AuthServices authServMock;
 
     private String USER = "user";
     private String PASS = "pass";

@@ -1,8 +1,7 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Purchase;
-import com.catalyte.OrionsPets.models.PurchaseItem;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.PurchaseServices;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public class PurchaseControllerTest {
   private PurchaseServices purchServMock;
 
   @Mock
-  private AuthenticationServices authServMock;
+  private AuthServices authServMock;
 
   private String USER = "user";
   private String PASS = "pass";

@@ -2,12 +2,16 @@ package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Inventory;
 import com.catalyte.OrionsPets.models.PetType;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.InventoryServices;
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+
+import java.util.ArrayList;
+
 import static org.mockito.ArgumentMatchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doReturn;
@@ -25,7 +29,7 @@ public class InventoryControllerTest {
     private InventoryServices invServMock;
 
     @Mock
-    private AuthenticationServices authServMock;
+    private AuthServices authServMock;
 
     private String USER = "user";
     private String PASS = "pass";
@@ -34,6 +38,12 @@ public class InventoryControllerTest {
     public void before() {
         initMocks(this);
         doReturn(true).when(authServMock).authenticate(USER, PASS, "ADMIN");
+    }
+
+    @Test
+    public void findAllHappyPath() {
+        doReturn(new ArrayList()).when(invServMock).findAll();
+        TestCase.assertEquals(new ArrayList(), classToTest.findAll());
     }
 
     @Test

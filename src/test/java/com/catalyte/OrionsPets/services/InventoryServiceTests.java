@@ -1,5 +1,6 @@
 package com.catalyte.OrionsPets.services;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -12,9 +13,9 @@ import com.catalyte.OrionsPets.repositories.PetTypeRepository;
 import com.catalyte.OrionsPets.resorces.DataNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
 
 public class InventoryServiceTests {
 
@@ -38,6 +39,24 @@ public class InventoryServiceTests {
   public void searchInventoriesSadPath() throws Exception {
     doReturn(false).when(typeRepoMock).existsByType("type");
     classToTest.searchInventoriesByPetType("type");
+  }
+
+  @Test
+  public void searchInventoriesHappyPath() throws DataNotFoundException{
+    PetType petType = new PetType();
+    petType.setId("");
+    Inventory inventory = new Inventory();
+    doReturn(true).when(typeRepoMock).existsByType("");
+    doReturn(petType).when(typeRepoMock).findByType("");
+    doReturn(inventory).when(invRepoMock).findByPetType("");
+    assertEquals(inventory,classToTest.searchInventoriesByPetType(""));
+
+  }
+
+  @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(invRepoMock).findAll();
+    assertEquals(new ArrayList(), classToTest.findAll());
   }
 
   @Test

@@ -9,6 +9,8 @@ import com.catalyte.OrionsPets.resorces.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InventoryServices {
 
@@ -25,34 +27,39 @@ public class InventoryServices {
     this.petRepository = petRepository;
   }
 
+  public List<Inventory> findAll() {
+    return inventoryRepository.findAll();
+  }
+
   public Inventory searchInventoriesByPetType(String petType) throws DataNotFoundException {
     if (petTypeRepository.existsByType(petType)) {
-      String petTypeId = petTypeRepository.findByType(petType).getId();
-      return inventoryRepository.findByPetTypeId(petTypeId);
+      return inventoryRepository.findByPetType(petType);
     } else throw new DataNotFoundException();
   }
 
   public boolean createInventory(PetType petType, double price) {
+    boolean result = false;
     if (!petTypeRepository.existsByType(petType.getType())) {
-      String petTypeId = petTypeRepository.save(petType).getId();
+      String petTypeType = petTypeRepository.save(petType).getType();
       Inventory inventory = new Inventory();
-      inventory.setPetTypeId(petTypeId);
+      inventory.setPetType(petTypeType);
       inventory.setPrice(price);
       inventoryRepository.save(inventory);
-      return true;
+      result = true;
     }
-    return false;
+    return result;
   }
 
   public boolean deleteInventory(String petType) {
+    boolean result = false;
     if (petTypeRepository.existsByType(petType)) {
       String petTypeId = petTypeRepository.findByType(petType).getId();
-      petRepository.deleteByPetTypeId(petTypeId);
-      inventoryRepository.deleteByPetTypeId(petTypeId);
+      petRepository.deleteByPetType(petType);
+      inventoryRepository.deleteByPetType(petType);
       petTypeRepository.deleteById(petTypeId);
-      return true;
+      result = true;
     }
-    return false;
+    return result;
   }
 
 }

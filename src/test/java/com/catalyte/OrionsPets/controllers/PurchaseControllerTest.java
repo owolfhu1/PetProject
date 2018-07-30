@@ -1,11 +1,12 @@
 package com.catalyte.OrionsPets.controllers;
 
 import com.catalyte.OrionsPets.models.Purchase;
-import com.catalyte.OrionsPets.models.PurchaseItem;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.PurchaseServices;
 import java.util.ArrayList;
 import java.util.List;
+
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -27,7 +28,7 @@ public class PurchaseControllerTest {
   private PurchaseServices purchServMock;
 
   @Mock
-  private AuthenticationServices authServMock;
+  private AuthServices authServMock;
 
   private String USER = "user";
   private String PASS = "pass";
@@ -37,6 +38,12 @@ public class PurchaseControllerTest {
   public void before() {
     initMocks(this);
     doReturn(true).when(authServMock).authenticate(USER, PASS, "ADMIN");
+  }
+
+  @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(purchServMock).findAll();
+    TestCase.assertEquals(new ArrayList(), classToTest.findAll());
   }
 
   @Test
@@ -55,6 +62,14 @@ public class PurchaseControllerTest {
     doReturn(dummyId).when(purchServMock).createPurchase(dummyId,items);
     String result = classToTest.createPurchase(USER,PASS,dummyId,items);
     assertEquals(dummyId,result);
+  }
+  @Test
+  public void createPurchaseSadPath() {
+    String[] items = new String[1];
+    items[0] = dummyId;
+    doReturn(dummyId).when(purchServMock).createPurchase(dummyId,items);
+    String result = classToTest.createPurchase(USER,"",dummyId,items);
+    assertEquals("Not authorized",result);
   }
 
   @Test

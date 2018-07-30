@@ -13,6 +13,7 @@ import com.catalyte.OrionsPets.repositories.PurchaseRepository;
 
 import com.catalyte.OrionsPets.repositories.UserRepository;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SetUpServices {
-  private static final int MAX_PETS_PER_PURCHASE = 3;
-  private static final int MAX_PET_AGE = 20;
-  private static final int NUMB_OF_PETS = 50;
-  private static final int NUMB_OF_CUSTOMERS = 20;
-  private static final int NUMB_OF_PURCHASES = 20;
+  public static final String SUPER_SECRET_PASSWORD = "password";
+  private static int MAX_PETS_PER_PURCHASE = 3;
+  private static int MAX_PET_AGE = 20;
+  private static int NUMB_OF_PETS = 20;
+  private static int NUMB_OF_CUSTOMERS = 10;
+  private static int NUMB_OF_PURCHASES = 10;
   private static String[] colors = {"red", "yellow", "blue", "green", "brown",
           "white", "black", "gray", "striped", "orange", "purple", "pink"};
   private static String[] begin = {"Kr", "Ca", "Ra", "Mrok", "Cru",
@@ -59,8 +61,8 @@ public class SetUpServices {
     this.userRepository = userRepository;
   }
 
-  public boolean clearDatabase() {
-    try {
+  public boolean clearDatabase(String password) {
+    if (password.equals(SUPER_SECRET_PASSWORD)) {
       customerRepository.deleteAll();
       inventoryRepository.deleteAll();
       petRepository.deleteAll();
@@ -68,23 +70,46 @@ public class SetUpServices {
       purchaseRepository.deleteAll();
       userRepository.deleteAll();
       return true;
-    } catch (Exception e) {
+    }  else
       return false;
-    }
   }
 
-  public boolean createDummyData() {
+  public int createEmptyData(String password,String adminUsername, String adminPassword) {
+    if (!password.equals(SUPER_SECRET_PASSWORD)) {
+      return -1;
+    }
     if (petTypeRepository.findAll().size() == 0 && inventoryRepository.findAll().size() == 0 &&
             petRepository.findAll().size() == 0 && customerRepository.findAll().size() == 0 &&
             purchaseRepository.findAll().size() == 0 && userRepository.findAll().size() == 0) {
+      User admin = new User(adminUsername,adminPassword);
+      UserDTO adminDTO = new UserDTO(admin);
+      adminDTO.addRole("USER");
+      adminDTO.addRole("ADMIN");
+      userRepository.save(admin);
+      return 1;
+    }
+    return -2;
+  }
+
+  public int createDummyData(String password, int pets, int customers, int purchases) {
+    if (!password.equals(SUPER_SECRET_PASSWORD))
+      return -1;
+    if (petTypeRepository.findAll().size() == 0 && inventoryRepository.findAll().size() == 0 &&
+            petRepository.findAll().size() == 0 && customerRepository.findAll().size() == 0 &&
+            purchaseRepository.findAll().size() == 0 && userRepository.findAll().size() == 0) {
+
+
+      NUMB_OF_PETS = pets > 200 ? 200 : pets;
+      NUMB_OF_CUSTOMERS = customers > 100 ? 100 : customers;
+      NUMB_OF_PURCHASES = purchases > NUMB_OF_PETS/2 ? NUMB_OF_PETS/2 : purchases;
       createUsers();
       createDummyPetTypesAndInventories();
       createDummyPets();
       createDummyCustomers();
       createDummyPurchases();
-      return true;
+      return 1;
     }
-    return false;
+    return -2;
   }
 
   private void createUsers() {
@@ -102,25 +127,20 @@ public class SetUpServices {
   private void createDummyPetTypesAndInventories() {
     for (String type : petTypes) {
       petTypeRepository.save(new PetType(type));
-      String petTypeId = petTypeRepository.findByType(type).getId();
       Inventory inventory = new Inventory();
-      inventory.setPetTypeId(petTypeId);
+      inventory.setPetType(type);
       inventory.setPrice((rand.nextInt(400)+1)*.25);
       inventoryRepository.save(inventory);
     }
   }
 
   private void createDummyPets() {
-    String[] petTypeIds = new String[petTypes.length];
-    for (int i = 0; i < petTypes.length; i++)
-      petTypeIds[i] = petTypeRepository.findByType(petTypes[i]).getId();
     for (int i = 0; i < NUMB_OF_PETS; i++) {
-      Inventory inventory = inventoryRepository.findByPetTypeId(petTypeIds[rand.nextInt(petTypeIds.length)]);
+      Inventory inventory = inventoryRepository.findByPetType(petTypes[rand.nextInt(petTypes.length)]);
       InventoryDTO invDTO = new InventoryDTO(inventory);
-      System.out.println(inventory);
       invDTO.addInventory(1);
       inventoryRepository.save(inventory);
-      Pet pet = new Pet(inventory.getPetTypeId(), randomName(),rand.nextInt(MAX_PET_AGE)+1, randomColor(), rand.nextBoolean() ? "male":"female");
+      Pet pet = new Pet(inventory.getPetType(), randomName(),rand.nextInt(MAX_PET_AGE)+1, randomColor(), rand.nextBoolean() ? "male":"female");
       petRepository.save(pet);
     }
   }
@@ -135,16 +155,37 @@ public class SetUpServices {
     customerRepository.findAll().forEach(customer -> customerIds.add(customer.getId()));
     ArrayList<String> petIds = new ArrayList<>();
     petRepository.findAll().forEach(pet -> petIds.add(pet.getId()));
+
+    /*
+        FOR TESTING
+        because all repositories .findAll() must return empty to start these methods
+    */
+    if (customerIds.isEmpty()) {
+      Customer dummyCustomer = new Customer();
+      dummyCustomer.setId("abc");
+      Pet dummyPet = new Pet();
+      dummyPet.setId("abc");
+      List<Pet> dummyPetList = new ArrayList<>();
+      List<Customer> dummyCustomerList = new ArrayList<>();
+      for (int i = 0; i < 100; i++) {
+        dummyPetList.add(dummyPet);
+        dummyCustomerList.add(dummyCustomer);
+      }
+      dummyCustomerList.forEach(customer -> customerIds.add(customer.getId()));
+      dummyPetList.forEach(pet -> petIds.add(pet.getId()));
+    }
+    //end testing addition
+
     for (int i = 0; i < NUMB_OF_PURCHASES; i++){
       Purchase purchase = new Purchase();
       purchase.setCustomerId(customerIds.get(rand.nextInt(customerIds.size())));
       int numbOfPets = rand.nextInt(MAX_PETS_PER_PURCHASE)+1;
       for (int x = 0; x < numbOfPets; x++){
-        if (petIds.size() > 5) {//don't sell everything!!
+        if (petIds.size() > 0) {
           String petId = petIds.remove(rand.nextInt(petIds.size()));
           Pet pet = petRepository.findOneById(petId);
           pet.setSold(true);
-          Inventory inventory = inventoryRepository.findByPetTypeId(pet.getPetTypeId());
+          Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
           InventoryDTO invDTO = new InventoryDTO(inventory);
           invDTO.addInventory(-1);
           PurchaseDTO purchaseDTO = new PurchaseDTO(purchase);

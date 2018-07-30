@@ -33,6 +33,10 @@ public class PurchaseServices {
   }
 
 
+  public List<Purchase> findAll() {
+    return purchaseRepository.findAll();
+  }
+
   public List<Purchase> searchPurchases(String customerId) {
     return purchaseRepository.findByCustomerId(customerId);
   }
@@ -52,7 +56,7 @@ public class PurchaseServices {
     for (String id : petIds) {
       Pet pet = petRepository.findOneById(id);
       pet.setSold(true);
-      Inventory inventory = inventoryRepository.findByPetTypeId(pet.getPetTypeId());
+      Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
       InventoryDTO invDto = new InventoryDTO(inventory);
       invDto.addInventory(-1);
       PurchaseItem item = new PurchaseItem(pet.getId(),inventory.getPrice());
@@ -77,9 +81,8 @@ public class PurchaseServices {
       pet.setSold(false);
       petRepository.save(pet);
       purchaseRepository.save(purchase);
-      return "Pet returned";
     }
-    return "error";
+    return result ? "Pet returned" : "error";
   }
 
   public String deletePurchase(String purchaseId) {

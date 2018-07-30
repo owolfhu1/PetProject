@@ -35,10 +35,7 @@ public class PetServices {
     List<Pet> list;
     switch (type) {
       case "type":
-        if (petTypeRepository.existsByType(value))
-          list = petRepository.findByPetTypeId(petTypeRepository.findByType(value).getId());
-        else
-          list = new ArrayList<>();
+        list = petRepository.findByPetType(type);
         break;
       case "name":
         list = petRepository.findByName(value);
@@ -63,12 +60,16 @@ public class PetServices {
     return list;
   }
 
+  public List<Pet> findAll() {
+    return petRepository.findAll();
+  }
+
   public String createPet(Pet pet) {
     String validation = validatePet(pet);
     if (validation.isEmpty()) {
-      String petTypeId = petTypeRepository.findByType(pet.getPetTypeId()).getId();
-      pet.setPetTypeId(petTypeId);
-      Inventory inventory = inventoryRepository.findByPetTypeId(petTypeId);
+      pet.setId(null);
+      pet.setSold(false);
+      Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
       InventoryDTO invDTO = new InventoryDTO(inventory);
       invDTO.addInventory(1);
       petRepository.save(pet);
@@ -83,11 +84,9 @@ public class PetServices {
     String validation = validatePet(pet);
     if (validation.isEmpty()) {
       Pet oldPet = petRepository.findOneById(pet.getId());
-      String petTypeId = petTypeRepository.findByType(pet.getPetTypeId()).getId();
-      pet.setPetTypeId(petTypeId);
       petRepository.save(pet);
       if (oldPet.isSold() != pet.isSold()) {
-        Inventory inventory = inventoryRepository.findByPetTypeId(petTypeId);
+        Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
         InventoryDTO invDto = new InventoryDTO(inventory);
         invDto.addInventory(pet.isSold() ? -1 : 1);
         inventoryRepository.save(inventory);
@@ -100,8 +99,7 @@ public class PetServices {
     if (petRepository.existsById(petId)){
       Pet pet = petRepository.findOneById(petId);
       if (!pet.isSold()) {
-        Inventory inventory = inventoryRepository
-            .findByPetTypeId(pet.getPetTypeId());
+        Inventory inventory = inventoryRepository.findByPetType(pet.getPetType());
         InventoryDTO invDto = new InventoryDTO(inventory);
         invDto.addInventory(-1);
         inventoryRepository.save(inventory);
@@ -113,7 +111,7 @@ public class PetServices {
 
 
   private String validatePet(Pet pet) {
-    if (!petTypeRepository.existsByType(pet.getPetTypeId()))
+    if (!petTypeRepository.existsByType(pet.getPetType()))
       return "Bad pet type";
     if (pet.getName().isEmpty() || pet.getName().split(" ").length == 0)
       return "Pet name required";

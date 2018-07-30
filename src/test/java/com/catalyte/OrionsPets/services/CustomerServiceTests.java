@@ -11,6 +11,8 @@ import com.catalyte.OrionsPets.models.Customer;
 import com.catalyte.OrionsPets.repositories.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
+
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -30,12 +32,21 @@ public class CustomerServiceTests {
   }
 
   @Test
-  public void searchCustomersHappyPath() {
+  public void searchCustomersHappyPaths() {
     List<Customer> list = new ArrayList<>();
     list.add(new Customer());
+    doReturn(list).when(custRepoMock).findByPhone("value");
     doReturn(list).when(custRepoMock).findByAddress("value");
-    List<Customer> result = classToTest.searchCustomers("address","value");
-    assertEquals(result,list);
+    doReturn(list).when(custRepoMock).findByLastname("value");
+    doReturn(list).when(custRepoMock).findByFirstname("value");
+    List<Customer> phones = classToTest.searchCustomers("phone","value");
+    List<Customer> addresses = classToTest.searchCustomers("address","value");
+    List<Customer> lastnames = classToTest.searchCustomers("lastname","value");
+    List<Customer> firstnames = classToTest.searchCustomers("firstname","value");
+    assertEquals(list,phones);
+    assertEquals(list,addresses);
+    assertEquals(list,lastnames);
+    assertEquals(list,firstnames);
   }
 
   @Test
@@ -59,21 +70,33 @@ public class CustomerServiceTests {
   }
 
   @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(custRepoMock).findAll();
+    TestCase.assertEquals(new ArrayList(), classToTest.findAll());
+  }
+
+  @Test
   public void updateCustomerHappyPath() {
     Customer customer = new Customer("Orion","Wolf","(111) 111-1111","1111 abc drive");
     customer.setId("test");
     doReturn(true).when(custRepoMock).existsById("test");
-    boolean result = classToTest.updateCustomer(customer,"test");
+    boolean result = classToTest.updateCustomer(customer);
     assertTrue(result);
   }
 
   @Test
   public void updateCustomerSadPath() {
-    Customer customer = new Customer("Orion","Wolf","(111) 111-1111","   ");
+    Customer customer = new Customer("Orion","","(111) 111-1111","111 sddr drtg");
+    Customer customer2 = new Customer("","Wolf","(111) 111-1111","111 sddr drtg");
+    Customer customer3 = new Customer("Orion","Wolf","() 111-1111","111 sddr drtg");
     customer.setId("test");
     doReturn(true).when(custRepoMock).existsById("test");
-    boolean result = classToTest.updateCustomer(customer,"test");
-    assertFalse(result);
+    boolean result1 = classToTest.updateCustomer(customer);
+    boolean result2 = classToTest.updateCustomer(customer2);
+    boolean result3 = classToTest.updateCustomer(customer3);
+    assertFalse(result1);
+    assertFalse(result2);
+    assertFalse(result3);
   }
 
   @Test

@@ -17,6 +17,10 @@ public class CustomerServices {
     this.customerRepository = customerRepository;
   }
 
+  public List<Customer> findAll() {
+    return customerRepository.findAll();
+  }
+
   public List<Customer> searchCustomers(String type, String value) {
     List<Customer> list;
     switch (type) {
@@ -40,15 +44,15 @@ public class CustomerServices {
 
   public boolean createCustomer(Customer customer) {
     if (validateCustomer(customer)) {
+      customer.setId(null);
       customerRepository.save(customer);
       return true;
     }
     return false;
   }
 
-  public boolean updateCustomer(Customer customer, String customerId) {
-    if (validateCustomer(customer) && customerRepository.existsById(customerId)) {
-      customer.setId(customerId);
+  public boolean updateCustomer(Customer customer) {
+    if (validateCustomer(customer) && customerRepository.existsById(customer.getId())) {
       customerRepository.save(customer);
       return true;
     }

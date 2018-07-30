@@ -6,16 +6,20 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import com.catalyte.OrionsPets.models.Customer;
-import com.catalyte.OrionsPets.services.AuthenticationServices;
+import com.catalyte.OrionsPets.services.AuthServices;
 import com.catalyte.OrionsPets.services.CustomerServices;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-public class CustomerControllertests {
+public class CustomerControllerTests {
 
   @InjectMocks
   CustomerController classToTest;
@@ -24,7 +28,7 @@ public class CustomerControllertests {
   CustomerServices custServMock;
 
   @Mock
-  AuthenticationServices authServMock;
+  AuthServices authServMock;
 
   private String USER = "user";
   private String PASS = "pass";
@@ -33,6 +37,12 @@ public class CustomerControllertests {
   public void before() {
     initMocks(this);
     doReturn(true).when(authServMock).authenticate(USER, PASS, "ADMIN");
+  }
+
+  @Test
+  public void findAllHappyPath() {
+    doReturn(new ArrayList()).when(custServMock).findAll();
+    TestCase.assertEquals(new ArrayList(), classToTest.findAll());
   }
 
   @Test
@@ -62,8 +72,8 @@ public class CustomerControllertests {
   @Test
   public void updateCustomerHappyPath() {
     Customer customer = new Customer();
-    doReturn(true).when(custServMock).updateCustomer(customer,"id");
-    String result = classToTest.updateCustomer(USER,PASS,customer,"id");
+    doReturn(true).when(custServMock).updateCustomer(customer);
+    String result = classToTest.updateCustomer(USER,PASS,customer);
     assertEquals("Customer updated",result);
   }
 

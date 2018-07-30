@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface PetRepository extends MongoRepository<Pet, String> {
   Pet findOneById(String id);
-  void deleteByPetTypeId(String petTypeId);
-  List<Pet> findByPetTypeId(String id);
   List<Pet> findByName(String name);
   List<Pet> findByColor(String color);
   List<Pet> findBySex(String sex);
   List<Pet> findBySold(boolean sold);
   List<Pet> findByAge(int age);
+  void deleteByPetType(String petType);
+  List<Pet> findByPetType(String type);
 }

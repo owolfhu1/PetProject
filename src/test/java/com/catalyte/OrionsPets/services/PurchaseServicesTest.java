@@ -3,7 +3,6 @@ package com.catalyte.OrionsPets.services;
 import com.catalyte.OrionsPets.DTOs.PurchaseDTO;
 import com.catalyte.OrionsPets.models.Inventory;
 import com.catalyte.OrionsPets.models.Pet;
-import com.catalyte.OrionsPets.models.PetType;
 import com.catalyte.OrionsPets.models.Purchase;
 import com.catalyte.OrionsPets.models.PurchaseItem;
 import com.catalyte.OrionsPets.repositories.*;
@@ -44,7 +43,14 @@ public class PurchaseServicesTest {
         initMocks(this);
     }
 
-    @Test public void searchPurchasesHappyTest(){
+    @Test
+    public void findAllHappyPath() {
+        doReturn(new ArrayList()).when(purcRepoMock).findAll();
+        assertEquals(new ArrayList(), classToTest.findAll());
+    }
+
+    @Test
+    public void searchPurchasesHappyTest(){
         List<Purchase> expected = new ArrayList<>();
         doReturn(expected).when(purcRepoMock).findByCustomerId("id");
         List<Purchase> result = classToTest.searchPurchases("id");
@@ -57,15 +63,29 @@ public class PurchaseServicesTest {
         String[] petIds = new String[1];
         petIds[0] = dummyId;
         Pet pet = new Pet();
-        pet.setPetTypeId(dummyId);
+        pet.setPetType(dummyId);
         Inventory inventory = new Inventory();
-        inventory.setPetTypeId(dummyId);
+        inventory.setPetType(dummyId);
         doReturn(true).when(custRepoMock).existsById(dummyId);
         doReturn(true).when(petRepoMock).existsById(dummyId);
         doReturn(pet).when(petRepoMock).findOneById(dummyId);
-        doReturn(inventory).when(invRepoMock).findByPetTypeId(dummyId);
+        doReturn(inventory).when(invRepoMock).findByPetType(dummyId);
         String result = classToTest.createPurchase(dummyId,petIds);
         assertEquals("Purchase created",result);
+    }
+
+    @Test
+    public void createPurchaseSadPaths() {
+        String[] petIds = new String[1];
+        petIds[0] = "";
+        Pet pet = new Pet();
+        pet.setSold(true);
+        doReturn(pet).when(petRepoMock).findOneById("");
+        assertEquals("Bad customerId",classToTest.createPurchase("",petIds));
+        doReturn(true).when(custRepoMock).existsById("");
+        assertEquals(" is a bad petId",classToTest.createPurchase("",petIds));
+        doReturn(true).when(petRepoMock).existsById("");
+        assertEquals("Pet with  is already sold",classToTest.createPurchase("",petIds));
     }
 
     @Test
@@ -84,7 +104,17 @@ public class PurchaseServicesTest {
 
     }
 
-    @Test public void test3(){
+    @Test
+    public void returnPetSadPaths() {
+        assertEquals("bad purchaseId",classToTest.returnPet("",""));
+
+        doReturn(true).when(purcRepoMock).existsById("");
+        assertEquals("bad petId",classToTest.returnPet("",""));
+    }
+
+
+    @Test
+    public void deletePurchaseHappyPath(){
         String dummyId = "DUMMY_ID";
         Purchase purchase = new Purchase();
         purchase.setId(dummyId);
@@ -96,5 +126,11 @@ public class PurchaseServicesTest {
         String result = classToTest.deletePurchase(dummyId);
         assertEquals("Purchase deleted", result);
     }
+
+    @Test
+    public void deletePurchaseSadPAth(){
+        assertEquals("Purchase does not exist", classToTest.deletePurchase(""));
+    }
+
 
 }

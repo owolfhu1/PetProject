@@ -1,5 +1,6 @@
 package com.catalyte.OrionsPets.controllers;
 
+import com.catalyte.OrionsPets.models.User;
 import com.catalyte.OrionsPets.services.AuthServices;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by Orion Wolf_Hubbard on 7/29/2018.
@@ -37,6 +40,12 @@ public class AuthController {
             ,@RequestHeader String usernameToDelete) {
         return authServices.authenticate(username,password,"ADMIN") ?
                 authServices.deleteUser(usernameToDelete) : "Access denied";
+    }
+
+    @ApiOperation("Navigate here to find all users. Access level: none")
+    @RequestMapping(value = "find-all", method = RequestMethod.GET)
+    public List<User> findAll() {
+        return authServices.findAll();
     }
 
 }

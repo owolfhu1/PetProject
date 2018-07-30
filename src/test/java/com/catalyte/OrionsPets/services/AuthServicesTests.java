@@ -12,6 +12,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AuthServicesTests {
 
   private AuthServices classToTest;
@@ -60,6 +63,11 @@ public class AuthServicesTests {
     assertEquals("Could not find user.", classToTest.deleteUser(""));
   }
 
+  @Test
+  public void findAllHappyPath() {
+    doReturn(Arrays.asList(new User("orion","password"))).when(userRepoMock).findAll();
+    assertEquals("XXXXXXX",classToTest.findAll().get(0).getPassword());
+  }
 
 
 }

@@ -6,6 +6,8 @@ import com.catalyte.OrionsPets.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthServices {
 
@@ -42,6 +44,12 @@ public class AuthServices {
       return "User deleted";
     }
     return "Could not find user.";
+  }
+
+  public List<User> findAll() {
+    List<User> users = userRepository.findAll();
+    users.forEach(user -> user.setPassword("XXXXXXX"));
+    return users;
   }
 
 }
